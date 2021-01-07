@@ -1,4 +1,3 @@
-
 const { MongoClient } = require("mongodb");
 const fs = require("fs").promises;
 const path = require("path");
@@ -87,7 +86,6 @@ async function main() {
       ]);
     });
 
-
     /**
      * we can get rid of region_1/2 off our root document, since we've
      * placed them in an array
@@ -105,7 +103,6 @@ async function main() {
         { $set: { regions: [{ $arrayElemAt: ["$regions", 0] }] } },
       ])
 
-
     db.collection("tastings").aggregate([
       { $group: { _id: "$variety" } },
       { $project: { name: "$_id", "_id": 0 } },
@@ -117,8 +114,6 @@ async function main() {
       { $project: { name: "$_id", "_id": 0 } },
       { $out: "countries" }
     ]).toArray()
-
-
 
     await db.collection("tastings").aggregate([
       { $group: { _id: "$province" } },
@@ -133,7 +128,6 @@ async function main() {
       { $out: "regions" }
     ]).toArray();
 
-
     await db.collection("tastings").aggregate([
       { $unwind: "$regions" },
       { $group: { _id: "$regions" } },
@@ -141,13 +135,10 @@ async function main() {
       { $out: "regions" }
     ]).toArray()
 
-
-
     load.stop();
     console.info(
       `Wine collection set up! 🍷🍷🍷🍷🍷🍷🍷 \n I've also created a tasters collection for you 🥴 🥴 🥴`
     );
-
 
     process.exit();
   } catch (error) {
