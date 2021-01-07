@@ -1,7 +1,6 @@
 {
   "name": "skilled_project",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "directories": {
     "doc": "docs"
@@ -29,5 +28,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }
