@@ -4,23 +4,15 @@
       {
         "group": "software",
         "skills": [
-          {
-            "aspect": "driver creation"
-          },
-          {
-            "aspect": "unit testing"
-          }
+          "driver creation",
+          "unit testing"
         ]
       },
       {
         "group": "hardware",
         "skills": [
-          {
-            "aspect": "analogue circuit design"
-          },
-          {
-            "aspect": "digital circuit design"
-          }
+          "analogue circuit design",
+          "digital circuit design"
         ]
       }
     ],
@@ -35,11 +27,11 @@
                 "group": "software",
                 "skills": [
                   {
-                    "aspect": "driver creation",
+                    "skill": "driver creation",
                     "level": 3
                   },
                   {
-                    "aspect": "unit testing",
+                    "skill": "unit testing",
                     "level": 3
                   }
                 ]
@@ -48,11 +40,11 @@
                 "group": "hardware",
                 "skills": [
                   {
-                    "aspect": "analogue circuit design",
+                    "skill": "analogue circuit design",
                     "level": 1
                   },
                   {
-                    "aspect": "digital circuit design",
+                    "skill": "digital circuit design",
                     "level": 1
                   }
                 ]
@@ -71,11 +63,11 @@
                 "group": "software",
                 "skills": [
                   {
-                    "aspect": "driver creation",
+                    "skill": "driver creation",
                     "level": 1
                   },
                   {
-                    "aspect": "unit testing",
+                    "skill": "unit testing",
                     "level": 1
                   }
                 ]
@@ -84,11 +76,11 @@
                 "group": "hardware",
                 "skills": [
                   {
-                    "aspect": "analogue circuit design",
+                    "skill": "analogue circuit design",
                     "level": 3
                   },
                   {
-                    "aspect": "digital circuit design",
+                    "skill": "digital circuit design",
                     "level": 3
                   }
                 ]
@@ -102,11 +94,11 @@
                 "group": "software",
                 "skills": [
                   {
-                    "aspect": "driver creation",
+                    "skill": "driver creation",
                     "level": 2
                   },
                   {
-                    "aspect": "unit testing",
+                    "skill": "unit testing",
                     "level": 1
                   }
                 ]
@@ -115,11 +107,11 @@
                 "group": "hardware",
                 "skills": [
                   {
-                    "aspect": "analogue circuit design",
+                    "skill": "analogue circuit design",
                     "level": 3
                   },
                   {
-                    "aspect": "digital circuit design",
+                    "skill": "digital circuit design",
                     "level": 3
                   }
                 ]
@@ -146,11 +138,11 @@
                 "group": "software",
                 "skills": [
                   {
-                    "aspect": "driver creation",
+                    "skill": "driver creation",
                     "level": 0
                   },
                   {
-                    "aspect": "unit testing",
+                    "skill": "unit testing",
                     "level": 0
                   }
                 ]
@@ -159,11 +151,11 @@
                 "group": "hardware",
                 "skills": [
                   {
-                    "aspect": "analogue circuit design",
+                    "skill": "analogue circuit design",
                     "level": 0
                   },
                   {
-                    "aspect": "digital circuit design",
+                    "skill": "digital circuit design",
                     "level": 0
                   }
                 ]
@@ -178,11 +170,11 @@
                 "group": "software",
                 "skills": [
                   {
-                    "aspect": "driver creation",
+                    "skill": "driver creation",
                     "level": 0
                   },
                   {
-                    "aspect": "unit testing",
+                    "skill": "unit testing",
                     "level": 0
                   }
                 ]
@@ -191,11 +183,11 @@
                 "group": "hardware",
                 "skills": [
                   {
-                    "aspect": "analogue circuit design",
+                    "skill": "analogue circuit design",
                     "level": 0
                   },
                   {
-                    "aspect": "digital circuit design",
+                    "skill": "digital circuit design",
                     "level": 0
                   }
                 ]

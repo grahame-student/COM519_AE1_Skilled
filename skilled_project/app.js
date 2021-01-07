@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }))
+app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }));
 
 app.get('/', homeController.list);
 
@@ -43,7 +43,7 @@ app.get('/logout', async (req, res) => {
   req.session.destroy();
   global.user = false;
   res.redirect('/');
-})
+});
 
 app.listen(PORT, () => {
   console.log(
