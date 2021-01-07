@@ -1,207 +1,209 @@
-{
-  "skills": [
-    {
-      "group": "software",
-      "skills": [
-        {
-          "aspect": "driver creation"
-        },
-        {
-          "aspect": "unit testing"
-        }
-      ]
-    },
-    {
-      "group": "hardware",
-      "skills": [
-        {
-          "aspect": "analogue circuit design"
-        },
-        {
-          "aspect": "digital circuit design"
-        }
-      ]
-    }
-  ],
-  "roles": [
-    {
-      "title": "software engineer",
-      "required skills": [
-        {
-          "timestamp": "2021-01-06 12:01:01",
-          "skills": [
-            {
-              "group": "software",
-              "skills": [
-                {
-                  "aspect": "driver creation",
-                  "level": 3
-                },
-                {
-                  "aspect": "unit testing",
-                  "level": 3
-                }
-              ]
-            },
-            {
-              "group": "hardware",
-              "skills": [
-                {
-                  "aspect": "analogue circuit design",
-                  "level": 1
-                },
-                {
-                  "aspect": "digital circuit design",
-                  "level": 1
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "hardware engineer",
-      "required skills": [
-        {
-          "timestamp": "2021-01-06 12:01:01",
-          "skills": [
-            {
-              "group": "software",
-              "skills": [
-                {
-                  "aspect": "driver creation",
-                  "level": 1
-                },
-                {
-                  "aspect": "unit testing",
-                  "level": 1
-                }
-              ]
-            },
-            {
-              "group": "hardware",
-              "skills": [
-                {
-                  "aspect": "analogue circuit design",
-                  "level": 3
-                },
-                {
-                  "aspect": "digital circuit design",
-                  "level": 3
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "timestamp": "2021-01-07 12:01:01",
-          "skills": [
-            {
-              "group": "software",
-              "skills": [
-                {
-                  "aspect": "driver creation",
-                  "level": 2
-                },
-                {
-                  "aspect": "unit testing",
-                  "level": 1
-                }
-              ]
-            },
-            {
-              "group": "hardware",
-              "skills": [
-                {
-                  "aspect": "analogue circuit design",
-                  "level": 3
-                },
-                {
-                  "aspect": "digital circuit design",
-                  "level": 3
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "employee": [
-    {
-      "name": {
-        "first name": "Joe",
-        "last name": "Bloggs"
+[
+  {
+    "skills": [
+      {
+        "group": "software",
+        "skills": [
+          {
+            "aspect": "driver creation"
+          },
+          {
+            "aspect": "unit testing"
+          }
+        ]
       },
-      "job title": "software engineer",
-      "assessments": [
-        {
-          "assessment timestamp": "2021-01-12 13:05:00",
-          "role": "software engineer",
-          "role timestamp": "2021-01-07 12:01:01",
-          "skills": [
-            {
-              "group": "software",
-              "skills": [
-                {
-                  "aspect": "driver creation",
-                  "level": 0
-                },
-                {
-                  "aspect": "unit testing",
-                  "level": 0
-                }
-              ]
-            },
-            {
-              "group": "hardware",
-              "skills": [
-                {
-                  "aspect": "analogue circuit design",
-                  "level": 0
-                },
-                {
-                  "aspect": "digital circuit design",
-                  "level": 0
-                }
-              ]
-            }
-          ]
+      {
+        "group": "hardware",
+        "skills": [
+          {
+            "aspect": "analogue circuit design"
+          },
+          {
+            "aspect": "digital circuit design"
+          }
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "title": "software engineer",
+        "required skills": [
+          {
+            "timestamp": "2021-01-06 12:01:01",
+            "skills": [
+              {
+                "group": "software",
+                "skills": [
+                  {
+                    "aspect": "driver creation",
+                    "level": 3
+                  },
+                  {
+                    "aspect": "unit testing",
+                    "level": 3
+                  }
+                ]
+              },
+              {
+                "group": "hardware",
+                "skills": [
+                  {
+                    "aspect": "analogue circuit design",
+                    "level": 1
+                  },
+                  {
+                    "aspect": "digital circuit design",
+                    "level": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "hardware engineer",
+        "required skills": [
+          {
+            "timestamp": "2021-01-06 12:01:01",
+            "skills": [
+              {
+                "group": "software",
+                "skills": [
+                  {
+                    "aspect": "driver creation",
+                    "level": 1
+                  },
+                  {
+                    "aspect": "unit testing",
+                    "level": 1
+                  }
+                ]
+              },
+              {
+                "group": "hardware",
+                "skills": [
+                  {
+                    "aspect": "analogue circuit design",
+                    "level": 3
+                  },
+                  {
+                    "aspect": "digital circuit design",
+                    "level": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "timestamp": "2021-01-07 12:01:01",
+            "skills": [
+              {
+                "group": "software",
+                "skills": [
+                  {
+                    "aspect": "driver creation",
+                    "level": 2
+                  },
+                  {
+                    "aspect": "unit testing",
+                    "level": 1
+                  }
+                ]
+              },
+              {
+                "group": "hardware",
+                "skills": [
+                  {
+                    "aspect": "analogue circuit design",
+                    "level": 3
+                  },
+                  {
+                    "aspect": "digital circuit design",
+                    "level": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "employee": [
+      {
+        "name": {
+          "first name": "Joe",
+          "last name": "Bloggs"
         },
-        {
-          "assessment timestamp": "2021-01-01 13:05:00",
-          "role": "hardware engineer",
-          "skills": [
-            {
-              "group": "software",
-              "skills": [
-                {
-                  "aspect": "driver creation",
-                  "level": 0
-                },
-                {
-                  "aspect": "unit testing",
-                  "level": 0
-                }
-              ]
-            },
-            {
-              "group": "hardware",
-              "skills": [
-                {
-                  "aspect": "analogue circuit design",
-                  "level": 0
-                },
-                {
-                  "aspect": "digital circuit design",
-                  "level": 0
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+        "job title": "software engineer",
+        "assessments": [
+          {
+            "assessment timestamp": "2021-01-12 13:05:00",
+            "role": "software engineer",
+            "role timestamp": "2021-01-07 12:01:01",
+            "skills": [
+              {
+                "group": "software",
+                "skills": [
+                  {
+                    "aspect": "driver creation",
+                    "level": 0
+                  },
+                  {
+                    "aspect": "unit testing",
+                    "level": 0
+                  }
+                ]
+              },
+              {
+                "group": "hardware",
+                "skills": [
+                  {
+                    "aspect": "analogue circuit design",
+                    "level": 0
+                  },
+                  {
+                    "aspect": "digital circuit design",
+                    "level": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "assessment timestamp": "2021-01-01 13:05:00",
+            "role": "hardware engineer",
+            "skills": [
+              {
+                "group": "software",
+                "skills": [
+                  {
+                    "aspect": "driver creation",
+                    "level": 0
+                  },
+                  {
+                    "aspect": "unit testing",
+                    "level": 0
+                  }
+                ]
+              },
+              {
+                "group": "hardware",
+                "skills": [
+                  {
+                    "aspect": "analogue circuit design",
+                    "level": 0
+                  },
+                  {
+                    "aspect": "digital circuit design",
+                    "level": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
