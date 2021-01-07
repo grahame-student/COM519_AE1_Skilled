@@ -8,3 +8,5 @@ const skillSetsSchema = new Schema(
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model('SkillSets', skillSetsSchema);
