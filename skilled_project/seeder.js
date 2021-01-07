@@ -41,4 +41,4 @@ async function main() {
   }
 }
 
-main().then(r => {});
+main().then(() => {});
