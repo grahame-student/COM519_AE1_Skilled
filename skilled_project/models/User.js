@@ -19,6 +19,6 @@ userSchema.pre('save', async function (next) {
   } catch (e) {
     throw Error('could not hash password');
   }
-})
+});
 
 module.exports = mongoose.model('User', userSchema);

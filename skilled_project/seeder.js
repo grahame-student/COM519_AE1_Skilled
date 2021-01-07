@@ -11,7 +11,7 @@ require('dotenv').config();
 const { MONGODB_URI } = process.env;
 const client = new MongoClient(MONGODB_URI);
 
-async function main() {
+async function main () {
   try {
     await client.connect();
     const db = client.db();
@@ -36,7 +36,7 @@ async function main() {
 
     load.stop();
     console.info(
-      `Initialised skills database with sample data`
+      'Initialised skills database with sample data'
     );
 
     process.exit();

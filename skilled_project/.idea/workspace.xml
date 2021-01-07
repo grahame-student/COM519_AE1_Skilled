@@ -9,7 +9,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Skills.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/SkillSets.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/SkillSets.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/SkillSets.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seeder.js" beforeDir="false" afterPath="$PROJECT_DIR$/seeder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/skills.json" beforeDir="false" afterPath="$PROJECT_DIR$/skills.json" afterDir="false" />
@@ -39,7 +40,7 @@
     <property name="javascript.nodejs.core.library.typings.version" value="12.19.1" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -71,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610041552504</updated>
-      <workItem from="1610041553611" duration="5914000" />
+      <workItem from="1610041553611" duration="6232000" />
     </task>
     <servers />
   </component>
