@@ -1,7 +1,6 @@
 const { MongoClient } = require('mongodb');
 const fs = require('fs').promises;
 const path = require('path');
-const loading = require('loading-cli');
 
 require('dotenv').config();
 
@@ -9,7 +8,7 @@ require('dotenv').config();
  * constants
  */
 const { MONGODB_URI } = process.env;
-const client = new MongoClient(MONGODB_URI, {useUnifiedTopology: true});
+const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
 
 async function main () {
   try {
@@ -18,23 +17,14 @@ async function main () {
     await db.dropDatabase();
 
     /**
-     * This is just a fun little loader module that displays a spinner
-     * to the command line
-     */
-    const load = loading('importing your dummy data').start();
-
-    /**
      * Import the JSON data into the database
      */
     const data = await fs.readFile(path.join(__dirname, 'skills.json'), 'utf8');
-    await db.collection('import').insertMany(JSON.parse(data));
+    const jsonData = await JSON.parse(data);
+    await importTable(db, 'skills', jsonData);
+    await importTable(db, 'roles', jsonData);
+    await importTable(db, 'employees', jsonData);
 
-    // Break the 'import' table into individual tables
-    // - Skills
-    // - Roles
-    // - Employees
-
-    load.stop();
     console.info(
       'Initialised skills database with sample data'
     );
@@ -46,4 +36,10 @@ async function main () {
   }
 }
 
-main().then(() => {});
+async function importTable (db, table, data) {
+  console.info('Importing table: ' + table);
+  await db.collection(table).insertMany(data[table]);
+}
+
+main().then(() => {
+});
