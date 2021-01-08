@@ -13,7 +13,7 @@ const homeController = require('./controllers/home');
 const app = express();
 app.set('view engine', 'ejs');
 
-const { PORT, MONGODB_URI } = process.env;
+const { PORT, MONGODB_URI, SESSION_SECRET } = process.env;
 
 /**
  * connect to database
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }));
+app.use(expressSession({ secret: SESSION_SECRET, cookie: { expires: new Date(253402300000000) } }));
 
 app.get('/', homeController.list);
 
