@@ -46,7 +46,5 @@ app.get('/logout', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(
-    `Skilled app listening at http://localhost:${PORT}`
-  );
+  console.log(`Skilled app listening at http://localhost:${PORT}`);
 });
