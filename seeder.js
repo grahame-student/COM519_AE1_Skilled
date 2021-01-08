@@ -9,7 +9,7 @@ require('dotenv').config();
  * constants
  */
 const { MONGODB_URI } = process.env;
-const client = new MongoClient(MONGODB_URI);
+const client = new MongoClient(MONGODB_URI, {useUnifiedTopology: true});
 
 async function main () {
   try {
@@ -46,5 +46,4 @@ async function main () {
   }
 }
 
-main().then(() => {
-});
+main().then(() => {});
