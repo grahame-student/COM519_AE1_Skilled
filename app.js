@@ -56,9 +56,9 @@ app.get('/logout', async (req, res) => {
 /**
  * Configure API Routes
  */
-app.get("/api/v1/chart", getData.chart);
-app.get("/api/v1/chartGroup", getData.groups);
-app.get("/api/v1/chartData", getData.data);
+app.get('/api/v1/chart', getData.chart);
+app.get('/api/v1/chartGroup', getData.groups);
+app.get('/api/v1/chartData', getData.data);
 
 app.listen(PORT, () => {
   console.log(`Skilled app listening at http://localhost:${PORT}`);
