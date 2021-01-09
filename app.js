@@ -13,7 +13,7 @@ const homeController = require('./controllers/home');
 /**
  * API Controllers
  */
-const getData = require('./controllers/api/v1/getChartData')
+const getData = require('./controllers/api/v1/getChartData');
 
 const app = express();
 app.set('view engine', 'ejs');
