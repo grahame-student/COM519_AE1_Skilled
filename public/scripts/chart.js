@@ -5,7 +5,7 @@ async function loadChart () {
     const chartRef = await fetch('/api/v1/chart');
     const chart = await chartRef.json();
 
-    let chartHtml = [];
+    const chartHtml = [];
     chartHtml.push(chart);
     chartDomRef.innerHTML = chartHtml.join('');
   } catch (e) {
