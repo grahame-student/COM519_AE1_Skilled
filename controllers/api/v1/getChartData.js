@@ -16,22 +16,22 @@ const chartSvg = (chart) => {
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <style>
         .axis {
-            stroke-width: .2;
+            stroke-width: 0.2;
         }
         .scale {
-            stroke-width: .2;
+            stroke-width: 0.2;
         }
         .shape {
-            fill-opacity: .3;
+            fill-opacity: 0.3;
         }
         .shape:hover {
-            fill-opacity: .6;
+            fill-opacity: 0.6;
         }
     </style>
     ${chart}
 </svg>
 `;
-}
+};
 
 exports.chart = async (req, res) => {
   try {
@@ -40,14 +40,18 @@ exports.chart = async (req, res) => {
     await fetch(`${apiOptions.server}/api/v1/chartGroup`)
       .then(checkStatus)
       .then(res => res.json())
-      .then(objData => groups = objData)
+      .then(objData => {
+        groups = objData;
+      })
       .catch(handleErrors)
 
     let data;
     await fetch(`${apiOptions.server}/api/v1/chartData`)
       .then(checkStatus)
       .then(res => res.json())
-      .then(objData => data = objData)
+      .then(objData => {
+        data = objData;
+      })
       .catch(handleErrors)
     console.log('Chart Groups: ', groups);
     console.log('Chart Data  : ', data);
