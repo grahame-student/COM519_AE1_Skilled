@@ -1,19 +1,8 @@
-require('dotenv').config();
-const { API_BASE } = process.env;
-
-const apiOptions = {
-  // use for development
-  server: 'http://localhost:2020'
-};
-if (process.env.NODE_ENV === 'production') {
-  // use when deployed onto a production server
-  apiOptions.server = API_BASE;
-}
+const opts = require('./apiOptions');
 
 const chartSvg = (chart) => {
   return `
-<h2>Chart Template</h2>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg id="skills-chart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <style>
         .axis {
             stroke-width: 0.2;
@@ -27,6 +16,10 @@ const chartSvg = (chart) => {
         .shape:hover {
             fill-opacity: 0.6;
         }
+        
+        .shape.iphone {
+            fill: #ff00ff;
+        }
     </style>
     ${chart}
 </svg>
@@ -36,9 +29,10 @@ const chartSvg = (chart) => {
 exports.chart = async (req, res) => {
   try {
     const fetch = require('node-fetch');
+    const base_url = await opts.apiurl();
     let groups;
-    console.log(`Getting group list using endpoint: ${apiOptions.server}/api/v1/chartGroup`);
-    await fetch(`${apiOptions.server}/api/v1/chartGroup`)
+    console.log(`Getting group list using endpoint: ${base_url}/api/v1/chartGroup`);
+    await fetch(`${base_url}/api/v1/chartGroup`)
       .then(checkStatus)
       .then(res => res.json())
       .then(objData => {
@@ -47,16 +41,14 @@ exports.chart = async (req, res) => {
       .catch(handleErrors);
 
     let data;
-    console.log(`Getting chart data using endpoint: ${apiOptions.server}/api/v1/chartData`);
-    await fetch(`${apiOptions.server}/api/v1/chartData`)
+    console.log(`Getting chart data using endpoint: ${base_url}/api/v1/chartData`);
+    await fetch(`${base_url}/api/v1/chartData`)
       .then(checkStatus)
       .then(res => res.json())
       .then(objData => {
         data = objData;
       })
       .catch(handleErrors);
-    console.log('Chart Groups: ', groups);
-    console.log('Chart Data  : ', data);
 
     res.json(await getSvgChart(groups, data));
   } catch (error) {
@@ -127,12 +119,9 @@ async function handleErrors (error) {
 async function getSvgChart (groups, data) {
   // Generate the chart from the gathered elements
   const radar = require('svg-radar-chart');
-  const chart = radar(groups, data);
+  const chart = radar(groups, data, { shapeProps: (data) => ({ className: 'shape ' + data.class }) });
 
   // Convert the chart to an SVG representation
   const stringify = require('virtual-dom-stringify');
-  const svgContent = chartSvg(stringify(chart));
-  console.log('Chart SVG: ', svgContent);
-
-  return svgContent;
+  return chartSvg(stringify(chart));
 }

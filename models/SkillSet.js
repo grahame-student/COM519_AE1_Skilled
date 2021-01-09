@@ -9,4 +9,4 @@ const skillSetSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('SkillSet', skillSetSchema);
+module.exports = mongoose.model('SkillSet', skillSetSchema, 'skills');

@@ -12,3 +12,11 @@
     font-size: 3.5rem;
   }
 }
+
+#skills-chart {
+  height: 60vmin;
+}
+
+#group-selector {
+  width: 100%;
+}

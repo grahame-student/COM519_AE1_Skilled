@@ -4,7 +4,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="description" content=""/>
-        <title>Employee Skill Assessment - Sign In</title>
+        <title>Employee Skill Assessment - Manage Skills</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/"/>
         <!-- Bootstrap core CSS -->
@@ -12,9 +12,10 @@
               integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
               crossorigin="anonymous"/>
         <link href="css/skilled.css" rel="stylesheet"/>
-        <script src="scripts/chart.js"></script>
+        <script src="scripts/skills.js"></script>
+        <script src="scripts/api_helper.js"></script>
     </head>
-    <body onload="loadChart()">
+    <body onload="getGroupList()">
         <%- include('common/header'); -%>
 
         <main role="main">
@@ -27,8 +28,21 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col" id="skills-controls"></div>
-                    <div class="col" id="skills-chart-container"></div>
+                    <div class="col" id="skills-groups">
+                        <div class="list-group">
+                            <label for="group-selector">Skill Groups</label>
+                            <div class="row" id="group-list"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- add button -->
+                                </div>
+                                <div class="col">
+                                    <!-- delete button -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" id="skill-aspects"></div>
                 </div>
             </div>
         </main>
