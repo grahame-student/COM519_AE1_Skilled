@@ -1,4 +1,4 @@
-const loadChart = async () => {
+async function loadChart () {
   const chartDomRef = document.querySelector('#skills-chart');
   try {
     console.log('requesting chart svg');
