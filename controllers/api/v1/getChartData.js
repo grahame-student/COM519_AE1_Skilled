@@ -6,7 +6,7 @@ const apiOptions = {
   server: 'http://localhost:2020'
 };
 if (process.env.NODE_ENV === 'production') {
-  // use for deployed
+  // use when deployed onto a production server
   apiOptions.server = API_BASE;
 }
 
@@ -37,6 +37,7 @@ exports.chart = async (req, res) => {
   try {
     const fetch = require('node-fetch');
     let groups;
+    console.log(`Getting group list using endpoint: ${apiOptions.server}/api/v1/chartGroup`);
     await fetch(`${apiOptions.server}/api/v1/chartGroup`)
       .then(checkStatus)
       .then(res => res.json())
@@ -46,6 +47,7 @@ exports.chart = async (req, res) => {
       .catch(handleErrors);
 
     let data;
+    console.log(`Getting chart data using endpoint: ${apiOptions.server}/api/v1/chartData`);
     await fetch(`${apiOptions.server}/api/v1/chartData`)
       .then(checkStatus)
       .then(res => res.json())
