@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 async function loadChart () {
+  /* eslint-enable no-unused-vars */
   const chartDomRef = document.querySelector('#skills-chart');
   try {
     console.log('requesting chart svg');
