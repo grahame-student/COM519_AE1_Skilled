@@ -11,13 +11,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
               integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
               crossorigin="anonymous"/>
-        <link href="css/album.css" rel="stylesheet"/>
         <link href="css/skilled.css" rel="stylesheet"/>
-        <!--
-        <script src="scripts/search-tasting.js"></script>
-        -->
+        <script src="scripts/chart.js"></script>
     </head>
-    <body>
+    <body onload="loadChart()">
         <%- include('common/header'); -%>
 
         <main role="main">
@@ -29,8 +26,8 @@
             </section>
 
             <div class="album py-5 bg-light">
-                <div class="container">
-                    <canvas class="my-4 w-100" id="myChart" width="400" height="400"></canvas>
+                <div class="container-sm">
+                    <div class="my-4 w-100" id="skills-chart"></div>
                 </div>
             </div>
         </main>

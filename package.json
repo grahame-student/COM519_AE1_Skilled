@@ -18,7 +18,10 @@
     "md5": "^2.3.0",
     "mocha": "^8.2.1",
     "mongodb": "^3.6.3",
-    "mongoose": "^5.11.10"
+    "mongoose": "^5.11.10",
+    "node-fetch": "^2.6.1",
+    "svg-radar-chart": "^0.2.2",
+    "virtual-dom-stringify": "^3.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
