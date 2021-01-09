@@ -60,7 +60,7 @@ exports.chart = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(404).send({
-      message: `could not get chart`,
+      message: 'could not get chart'
     });
   }
 }
@@ -72,7 +72,7 @@ exports.groups = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(404).send({
-      message: `could not perform search for skill groups`,
+      message: 'could not perform search for skill groups'
     });
   }
 }
@@ -84,7 +84,7 @@ exports.data = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(404).send({
-      message: `could not perform search for skill data`,
+      message: 'could not perform search for skill data'
     });
   }
 }
@@ -103,9 +103,9 @@ async function getData () {
   // Placeholder data, to be replaced with db access
   return [
     // data
-    { class: 'iphone', battery: .7, design: 1, useful: .9 },
-    { class: 'galaxy', battery: 1, design: .6, useful: .8 },
-    { class: 'nexus', battery: .8, design: .7, useful: .6 }
+    { class: 'iphone', battery: 0.7, design: 1, useful: 0.9 },
+    { class: 'galaxy', battery: 1, design: 0.6, useful: 0.8 },
+    { class: 'nexus', battery: 0.8, design: 0.7, useful: 0.6 }
   ]
 }
 
