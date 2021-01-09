@@ -43,7 +43,7 @@ exports.chart = async (req, res) => {
       .then(objData => {
         groups = objData;
       })
-      .catch(handleErrors)
+      .catch(handleErrors);
 
     let data;
     await fetch(`${apiOptions.server}/api/v1/chartData`)
@@ -52,7 +52,7 @@ exports.chart = async (req, res) => {
       .then(objData => {
         data = objData;
       })
-      .catch(handleErrors)
+      .catch(handleErrors);
     console.log('Chart Groups: ', groups);
     console.log('Chart Data  : ', data);
 
@@ -63,7 +63,7 @@ exports.chart = async (req, res) => {
       message: 'could not get chart'
     });
   }
-}
+};
 
 exports.groups = async (req, res) => {
   try {
@@ -75,7 +75,7 @@ exports.groups = async (req, res) => {
       message: 'could not perform search for skill groups'
     });
   }
-}
+};
 
 exports.data = async (req, res) => {
   try {
@@ -87,7 +87,7 @@ exports.data = async (req, res) => {
       message: 'could not perform search for skill data'
     });
   }
-}
+};
 
 async function getGroups () {
   // Placeholder data, to be replaced with db access
@@ -106,7 +106,7 @@ async function getData () {
     { class: 'iphone', battery: 0.7, design: 1, useful: 0.9 },
     { class: 'galaxy', battery: 1, design: 0.6, useful: 0.8 },
     { class: 'nexus', battery: 0.8, design: 0.7, useful: 0.6 }
-  ]
+  ];
 }
 
 async function checkStatus (res) {
