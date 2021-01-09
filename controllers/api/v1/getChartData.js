@@ -128,7 +128,7 @@ async function getSvgChart (groups, data) {
   const chart = radar(groups, data);
 
   // Convert the chart to an SVG representation
-  const stringify = require('virtual-dom-stringify')
+  const stringify = require('virtual-dom-stringify');
   const svgContent = chartSvg(stringify(chart));
   console.log('Chart SVG: ', svgContent);
 
