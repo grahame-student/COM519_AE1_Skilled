@@ -96,7 +96,7 @@ async function getGroups () {
     battery: 'Battery Capacity',
     design: 'Design',
     useful: 'Usefulness'
-  }
+  };
 }
 
 async function getData () {
