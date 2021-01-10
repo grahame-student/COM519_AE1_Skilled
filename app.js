@@ -16,6 +16,7 @@ const skillsController = require('./controllers/skills');
  */
 const getData = require('./controllers/api/v1/getChartData');
 const skillsGroup = require('./controllers/api/v1/skillGroups');
+const skills = require('./controllers/api/v1/skills');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -51,6 +52,7 @@ app.get('/', homeController.list);
 
 app.get('/edit-skills', skillsController.list);
 
+// TODO: Not yet implemented
 app.get('/logout', async (req, res) => {
   req.session.destroy();
   global.user = false;
@@ -58,16 +60,22 @@ app.get('/logout', async (req, res) => {
 });
 
 /**
- * Configure API Routes
+ * Configure v1 API Routes
  */
+// charting API endpoints
 app.get('/api/v1/chart', getData.chart);
 app.get('/api/v1/chartGroup', getData.groups);
 app.get('/api/v1/chartData', getData.data);
-app.get('/api/v1/group', skillsGroup.list);
-app.get('/api/v1/group/:group', skillsGroup.request);
-app.delete('/api/v1/group/:group', skillsGroup.delete);
-app.post('/api/v1/group', skillsGroup.add);
-app.patch('/api/v1/group/:group', skillsGroup.update);
+
+// skill groups API endpoints
+app.get('/api/v1/group', skillsGroup.list); // Get list of skill groups
+app.get('/api/v1/group/:group', skillsGroup.request); // Get single skill group
+app.delete('/api/v1/group/:group', skillsGroup.delete); // remove single skill group
+app.post('/api/v1/group', skillsGroup.add); // add new skill group
+app.patch('/api/v1/group/:group', skillsGroup.update); // update single skill groups
+
+// skills API endpoints
+app.post('/api/v1/skill/:group', skills.add); // add skills to a skill group
 
 /**
  * Start listening for incoming traffic

@@ -13,6 +13,22 @@ const groupList = (groups) => {
   return listStart + listBody + listEnd;
 };
 
+const skillList = (skills) => {
+  const length = Math.min(10, skills.length);
+
+  const listStart = `<select id="skill-selector" size="${length}">`;
+
+  let listBody = '';
+  skills.forEach(element => {
+    listBody += `<option value="${element}">${element}</option>`;
+  });
+
+  const listEnd = '</select>';
+
+  console.log(listStart + listBody + listEnd);
+  return listStart + listBody + listEnd;
+}
+
 // getGroupList is used from a client side webpage
 /* eslint-disable no-unused-vars */
 async function getGroupList () {
@@ -69,19 +85,20 @@ async function addGroup () {
 /* eslint-disable no-unused-vars */
 async function modifyGroup () {
   /* eslint-enable no-unused-vars */
-  const selectedSkill = document.getElementById('group-selector').value;
-  console.log('Skill group selected: ', selectedSkill);
+  const selectedGroup = document.getElementById('group-selector').value;
+  console.log('Skill group selected: ', selectedGroup);
+  if (selectedGroup === null) return;
 
-  const updatedGroup = prompt('Enter the new name of the new skill group', selectedSkill);
+  const updatedGroup = prompt('Enter the new name of the new skill group', selectedGroup);
   if (updatedGroup === null) return;
 
   /* eslint-disable no-undef */
   // getParam becomes visible once deployed on the server
-  const apiUrl = `/api/v1/group/${getParam(selectedSkill)}`;
+  const apiUrl = `/api/v1/group/${getParam(selectedGroup)}`;
   /* eslint-enable no-undef */
 
   try {
-    console.log(`changing group: ${selectedSkill} to ${updatedGroup}`);
+    console.log(`changing group: ${selectedGroup} to ${updatedGroup}`);
     await fetch(apiUrl, {
       method: 'PATCH',
       headers: {
@@ -104,6 +121,7 @@ async function deleteGroup () {
   /* eslint-enable no-unused-vars */
   const selectedGroup = document.getElementById('group-selector').value;
   console.log('Skill group selected: ', selectedGroup);
+  if (selectedGroup === null) return;
 
   /* eslint-disable no-undef */
   // getParam becomes visible once deployed on the server
@@ -125,12 +143,13 @@ async function deleteGroup () {
 /* eslint-disable no-unused-vars */
 async function getSkillList () {
   /* eslint-enable no-unused-vars */
-  const selectedSkill = document.getElementById('group-selector').value;
-  console.log('Skill group selected: ', selectedSkill);
+  const selectedGroup = document.getElementById('group-selector').value;
+  console.log('Skill group selected: ', selectedGroup);
+  if (selectedGroup === null) return;
 
   /* eslint-disable no-undef */
   // getParam becomes visible once deployed on the server
-  const apiUrl = `/api/v1/group/${getParam(selectedSkill)}`;
+  const apiUrl = `/api/v1/group/${getParam(selectedGroup)}`;
   /* eslint-enable no-undef */
 
   const skillsDomRef = document.querySelector('#skill-list');
@@ -140,7 +159,7 @@ async function getSkillList () {
     const group = await skillsRef.json();
 
     const skillsHtml = [];
-    skillsHtml.push(group.skills.toString());
+    skillsHtml.push(skillList(group.skills));
     skillsDomRef.innerHTML = skillsHtml.join('');
   } catch (e) {
     console.log(`error using skilled API: ${apiUrl}`);
@@ -152,7 +171,42 @@ async function getSkillList () {
 /* eslint-disable no-unused-vars */
 async function addSkill () {
   /* eslint-enable no-unused-vars */
+  const selectedGroup = document.getElementById('group-selector').value;
+  console.log('Skill group selected: ', selectedGroup);
+  if (selectedGroup === null) return;
 
+  // Request list of skills to add
+  const newSkills = prompt('Enter comma separated list of the new skill(s)');
+  if (newSkills === null) return;
+
+  const skillsList = newSkills
+    .trim()
+    .split(',')
+
+  console.log('Skills List', skillsList);
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/skill/${getParam(selectedGroup)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`adding skills to ${selectedGroup}:`);
+    console.log(`skills: ${skillsList.toString()}`);
+    await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ skills: skillsList })
+    });
+
+    await getSkillList();
+  } catch (e) {
+    console.log(e);
+    console.log(`error using skilled API: ${apiUrl}`);
+  }
 }
 
 // modifySkill is used from a client side webpage
