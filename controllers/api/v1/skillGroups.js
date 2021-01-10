@@ -1,5 +1,4 @@
 const SkillSet = require('../../../models/SkillSet');
-const opts = require("./apiOptions");
 
 exports.list = async (req, res, next) => {
   console.log('Requesting list of skill groups');
@@ -72,7 +71,7 @@ exports.update = async (req, res, next) => {
     if (err) return next(err);
     res.send(someValue);
   });
-}
+};
 
 async function handleErrors (error) {
   console.log(error);
