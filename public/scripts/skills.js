@@ -8,7 +8,7 @@ const groupList = (groups) => {
     listBody += `<option value="${element.group}">${element.group}</option>`;
   });
 
-  const listEnd = `</select>`;
+  const listEnd = '</select>';
 
   console.log(listStart + listBody + listEnd);
   return listStart + listBody + listEnd;
