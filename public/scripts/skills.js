@@ -13,9 +13,8 @@ const groupList = (groups) => {
   return listStart + listBody + listEnd;
 };
 
-/* eslint-disable no-unused-vars */
-
 // getGroupList is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function getGroupList () {
   /* eslint-enable no-unused-vars */
 
@@ -36,35 +35,10 @@ async function getGroupList () {
   }
 }
 
+// addGroup is used from a client side webpage
 /* eslint-disable no-unused-vars */
-
-// getSkillList is used from a client side webpage
-async function getSkillList () {
-  /* eslint-enable no-unused-vars */
-  const selectedSkill = document.getElementById('group-selector').value;
-  console.log('Skill group selected: ', selectedSkill);
-
-  /* eslint-disable no-undef */
-  // getParam becomes visible once deployed on the server
-  const apiUrl = `/api/v1/group/${getParam(selectedSkill)}`;
-  /* eslint-enable no-undef */
-
-  const skillsDomRef = document.querySelector('#skill-list');
-  try {
-    console.log('requesting group using: ', apiUrl);
-    const skillsRef = await fetch(apiUrl);
-    const group = await skillsRef.json();
-
-    const skillsHtml = [];
-    skillsHtml.push(group.skills.toString());
-    skillsDomRef.innerHTML = skillsHtml.join('');
-  } catch (e) {
-    console.log(`error using skilled API: ${apiUrl}`);
-    console.log(e);
-  }
-}
-
 async function addGroup () {
+  /* eslint-enable no-unused-vars */
   const newGroup = prompt("Enter the name of the new skill group");
   if (newGroup === null) return;
 
@@ -91,6 +65,8 @@ async function addGroup () {
   }
 }
 
+// getSkillList is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function modifyGroup () {
   const selectedSkill = document.getElementById('group-selector').value;
   console.log('Skill group selected: ', selectedSkill);
@@ -138,6 +114,33 @@ async function deleteGroup () {
   } catch (e) {
     console.log(e);
     console.log(`error using skilled API: ${apiUrl}`);
+  }
+}
+
+// getSkillList is used from a client side webpage
+/* eslint-disable no-unused-vars */
+async function getSkillList () {
+  /* eslint-enable no-unused-vars */
+  const selectedSkill = document.getElementById('group-selector').value;
+  console.log('Skill group selected: ', selectedSkill);
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/group/${getParam(selectedSkill)}`;
+  /* eslint-enable no-undef */
+
+  const skillsDomRef = document.querySelector('#skill-list');
+  try {
+    console.log('requesting group using: ', apiUrl);
+    const skillsRef = await fetch(apiUrl);
+    const group = await skillsRef.json();
+
+    const skillsHtml = [];
+    skillsHtml.push(group.skills.toString());
+    skillsDomRef.innerHTML = skillsHtml.join('');
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
   }
 }
 
