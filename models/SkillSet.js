@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const skillSetSchema = new Schema(
   {
     group: { type: String, required: [true, 'A group name is required'], unique: true },
-    skills: [{ type: String, unique: true }]
+    skills: [{ type: String }]
   },
   { timestamps: true }
 );

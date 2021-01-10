@@ -10,7 +10,6 @@ const groupList = (groups) => {
 
   const listEnd = '</select>';
 
-  console.log(listStart + listBody + listEnd);
   return listStart + listBody + listEnd;
 };
 
@@ -50,7 +49,7 @@ async function getSkillList () {
   const apiUrl = `/api/v1/group/${getParam(selectedSkill)}`;
   /* eslint-enable no-undef */
 
-  const skillsDomRef = document.querySelector('#skill-aspects');
+  const skillsDomRef = document.querySelector('#skill-list');
   try {
     console.log('requesting group using: ', apiUrl);
     const skillsRef = await fetch(apiUrl);
@@ -66,17 +65,60 @@ async function getSkillList () {
 }
 
 async function addGroup () {
+  const newGroup = prompt("Enter the name of the new skill group");
+  if (newGroup === null) return;
 
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/group`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`adding group: ${newGroup}`);
+    await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ group: newGroup })
+    });
+
+    await getGroupList();
+  } catch (e) {
+    console.log(e);
+    console.log(`error using skilled API: ${apiUrl}`);
+  }
 }
 
 async function modifyGroup () {
   const selectedSkill = document.getElementById('group-selector').value;
   console.log('Skill group selected: ', selectedSkill);
 
+  const updatedGroup = prompt("Enter the new name of the new skill group", selectedSkill);
+  if (updatedGroup === null) return;
+
   /* eslint-disable no-undef */
   // getParam becomes visible once deployed on the server
   const apiUrl = `/api/v1/group/${getParam(selectedSkill)}`;
   /* eslint-enable no-undef */
+
+  try {
+    console.log(`changing group: ${selectedSkill} to ${updatedGroup}`);
+    await fetch(apiUrl, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ group: updatedGroup })
+    });
+
+    await getGroupList();
+  } catch (e) {
+    console.log(e);
+    console.log(`error using skilled API: ${apiUrl}`);
+  }
 }
 
 async function deleteGroup () {
