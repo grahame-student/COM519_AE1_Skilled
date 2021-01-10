@@ -89,7 +89,7 @@ async function modifyGroup () {
   console.log('Skill group selected: ', selectedGroup);
   if (selectedGroup === null) return;
 
-  const updatedGroup = prompt('Enter the new name of the new skill group', selectedGroup);
+  const updatedGroup = prompt('Enter the new name of the skill group', selectedGroup);
   if (updatedGroup === null) return;
 
   /* eslint-disable no-undef */
@@ -213,12 +213,62 @@ async function addSkill () {
 /* eslint-disable no-unused-vars */
 async function modifySkill () {
   /* eslint-enable no-unused-vars */
+  const selectedGroup = document.getElementById('group-selector').value;
+  const selectedSkill = document.getElementById('skill-selector').value;
+  console.log('Skill group selected: ', selectedGroup);
+  console.log('Skill selected: ', selectedSkill);
+  if (selectedGroup === null) return;
+  if (selectedSkill === null) return;
 
+  const updatedSkill = prompt('Enter the new name for the skill', selectedSkill);
+  if (updatedSkill === null) return;
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/skill/${getParam(selectedGroup)}/${getParam(selectedSkill)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`deleting skill ${selectedGroup} from ${selectedSkill}`);
+    await fetch(apiUrl, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ skill: updatedSkill })
+    });
+
+    await getSkillList();
+  } catch (e) {
+    console.log(e);
+    console.log(`error using skilled API: ${apiUrl}`);
+  }
 }
 
 // deleteSkill is used from a client side webpage
 /* eslint-disable no-unused-vars */
 async function deleteSkill () {
   /* eslint-enable no-unused-vars */
+  const selectedGroup = document.getElementById('group-selector').value;
+  const selectedSkill = document.getElementById('skill-selector').value;
+  console.log('Skill group selected: ', selectedGroup);
+  console.log('Skill selected: ', selectedSkill);
+  if (selectedGroup === null) return;
+  if (selectedSkill === null) return;
 
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/skill/${getParam(selectedGroup)}/${getParam(selectedSkill)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`deleting skill ${selectedGroup} from ${selectedSkill}`);
+    await fetch(apiUrl, { method: 'DELETE' });
+
+    await getSkillList();
+  } catch (e) {
+    console.log(e);
+    console.log(`error using skilled API: ${apiUrl}`);
+  }
 }

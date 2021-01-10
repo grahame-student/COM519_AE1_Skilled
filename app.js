@@ -76,6 +76,8 @@ app.patch('/api/v1/group/:group', skillsGroup.update); // update single skill gr
 
 // skills API endpoints
 app.post('/api/v1/skill/:group', skills.add); // add skills to a skill group
+app.delete('/api/v1/skill/:group/:skill', skills.delete); // remove single skill from a skill group
+app.patch('/api/v1/skill/:group/:skill', skills.update); // update single skill from a skill group
 
 /**
  * Start listening for incoming traffic
