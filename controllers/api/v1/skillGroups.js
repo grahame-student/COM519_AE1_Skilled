@@ -1,4 +1,4 @@
-const SkillSet = require("../../../models/SkillSet");
+const SkillSet = require('../../../models/SkillSet');
 
 exports.list = async (req, res, next) => {
   console.log('Requesting list of skill groups');
@@ -8,11 +8,10 @@ exports.list = async (req, res, next) => {
     if (err) return next(err);
     res.send(someValue);
   });
-}
+};
 
 exports.request = async (req, res, next) => {
   const field = req.params.group;
-  const q = req.query.q;
   console.log('Requesting skill group: ');
   console.log('Group:                  ', field);
   const query = SkillSet.findOne({ group: field });
@@ -21,4 +20,4 @@ exports.request = async (req, res, next) => {
     if (err) return next(err);
     res.send(someValue);
   });
-}
+};

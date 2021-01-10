@@ -1,20 +1,21 @@
 const groupList = (groups) => {
   const length = Math.min(10, groups.length);
 
-  const list_start = `<select id="group-selector" size="${length}" onchange="getSkillList()">`;
+  const listStart = `<select id="group-selector" size="${length}" onchange="getSkillList()">`;
 
-  let list_body = ``;
+  let listBody = '';
   groups.forEach(element => {
-    list_body += `<option value="${element.group}">${element.group}</option>`
+    listBody += `<option value="${element.group}">${element.group}</option>`;
   });
 
-  const list_end = `</select>`;
+  const listEnd = `</select>`;
 
-  console.log(list_start + list_body + list_end);
-  return list_start + list_body + list_end;
+  console.log(listStart + listBody + listEnd);
+  return listStart + listBody + listEnd;
 };
 
 /* eslint-disable no-unused-vars */
+// getGroupList is used from a client side webpage
 async function getGroupList () {
   /* eslint-enable no-unused-vars */
   const groupDomRef = document.querySelector('#group-list');
@@ -32,14 +33,22 @@ async function getGroupList () {
   }
 }
 
+/* eslint-disable no-unused-vars */
+// getSkillList is used from a client side webpage
 async function getSkillList () {
-  const selectedSkill = document.getElementById("group-selector").value;
+  /* eslint-enable no-unused-vars */
+  const selectedSkill = document.getElementById('group-selector').value;
   console.log('Skill group selected: ', selectedSkill);
 
   const skillsDomRef = document.querySelector('#skill-aspects');
   try {
-    console.log('requesting group using: ', '/api/v1/group/' + getParam(selectedSkill));
-    const skillsRef = await fetch('/api/v1/group/' + getParam(selectedSkill));
+    /* eslint-disable no-undef */
+    // getParam becomes visible once deployed on the server
+    const apiUrl = `/api/v1/group/${getParam(selectedSkill)}`;
+    /* eslint-enable no-undef */
+
+    console.log('requesting group using: ', apiUrl);
+    const skillsRef = await fetch(apiUrl);
     const group = await skillsRef.json();
 
     const skillsHtml = [];

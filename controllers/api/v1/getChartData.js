@@ -29,10 +29,10 @@ const chartSvg = (chart) => {
 exports.chart = async (req, res) => {
   try {
     const fetch = require('node-fetch');
-    const base_url = await opts.apiurl();
+    const baseUrl = await opts.apiurl();
     let groups;
-    console.log(`Getting group list using endpoint: ${base_url}/api/v1/chartGroup`);
-    await fetch(`${base_url}/api/v1/chartGroup`)
+    console.log(`Getting group list using endpoint: ${baseUrl}/api/v1/chartGroup`);
+    await fetch(`${baseUrl}/api/v1/chartGroup`)
       .then(checkStatus)
       .then(res => res.json())
       .then(objData => {
@@ -41,8 +41,8 @@ exports.chart = async (req, res) => {
       .catch(handleErrors);
 
     let data;
-    console.log(`Getting chart data using endpoint: ${base_url}/api/v1/chartData`);
-    await fetch(`${base_url}/api/v1/chartData`)
+    console.log(`Getting chart data using endpoint: ${baseUrl}/api/v1/chartData`);
+    await fetch(`${baseUrl}/api/v1/chartData`)
       .then(checkStatus)
       .then(res => res.json())
       .then(objData => {
