@@ -65,9 +65,10 @@ async function addGroup () {
   }
 }
 
-// getSkillList is used from a client side webpage
+// modifyGroup is used from a client side webpage
 /* eslint-disable no-unused-vars */
 async function modifyGroup () {
+  /* eslint-enable no-unused-vars */
   const selectedSkill = document.getElementById('group-selector').value;
   console.log('Skill group selected: ', selectedSkill);
 
@@ -97,7 +98,10 @@ async function modifyGroup () {
   }
 }
 
+// deleteGroup is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function deleteGroup () {
+  /* eslint-enable no-unused-vars */
   const selectedGroup = document.getElementById('group-selector').value;
   console.log('Skill group selected: ', selectedGroup);
 
@@ -144,14 +148,23 @@ async function getSkillList () {
   }
 }
 
+// addSkill is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function addSkill () {
+  /* eslint-enable no-unused-vars */
 
 }
 
+// modifySkill is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function modifySkill () {
+  /* eslint-enable no-unused-vars */
 
 }
 
+// deleteSkill is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function deleteSkill () {
+  /* eslint-enable no-unused-vars */
 
 }
