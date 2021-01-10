@@ -39,12 +39,12 @@ async function getGroupList () {
 /* eslint-disable no-unused-vars */
 async function addGroup () {
   /* eslint-enable no-unused-vars */
-  const newGroup = prompt("Enter the name of the new skill group");
+  const newGroup = prompt('Enter the name of the new skill group');
   if (newGroup === null) return;
 
   /* eslint-disable no-undef */
   // getParam becomes visible once deployed on the server
-  const apiUrl = `/api/v1/group`;
+  const apiUrl = '/api/v1/group';
   /* eslint-enable no-undef */
 
   try {
@@ -52,7 +52,7 @@ async function addGroup () {
     await fetch(apiUrl, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ group: newGroup })
@@ -72,7 +72,7 @@ async function modifyGroup () {
   const selectedSkill = document.getElementById('group-selector').value;
   console.log('Skill group selected: ', selectedSkill);
 
-  const updatedGroup = prompt("Enter the new name of the new skill group", selectedSkill);
+  const updatedGroup = prompt('Enter the new name of the new skill group', selectedSkill);
   if (updatedGroup === null) return;
 
   /* eslint-disable no-undef */
@@ -85,7 +85,7 @@ async function modifyGroup () {
     await fetch(apiUrl, {
       method: 'PATCH',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ group: updatedGroup })
