@@ -65,6 +65,7 @@ app.get('/api/v1/chartGroup', getData.groups);
 app.get('/api/v1/chartData', getData.data);
 app.get('/api/v1/group', skillsGroup.list);
 app.get('/api/v1/group/:group', skillsGroup.request);
+app.delete('/api/v1/group/:group', skillsGroup.delete);
 
 app.listen(PORT, () => {
   console.log(`Skilled app listening at http://localhost:${PORT}`);

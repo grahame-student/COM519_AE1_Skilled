@@ -27,22 +27,25 @@
             </section>
 
             <div class="container">
-                <div class="row">
-                    <div class="col" id="skills-groups">
-                        <div class="list-group">
-                            <label for="group-selector">Skill Groups</label>
-                            <div class="row" id="group-list"></div>
-                            <div class="row">
-                                <div class="col">
-                                    <!-- add button -->
-                                </div>
-                                <div class="col">
-                                    <!-- delete button -->
-                                </div>
-                            </div>
+                <div class="row row-eq-height">
+                    <div class="col mx-3 p-4 bg-light" id="skills-groups">
+                        <label for="group-selector">Skill Groups</label>
+                        <div id="group-list"></div>
+                        <div class="btn-group py-3 mt-auto" role="group">
+                            <button class="btn btn-primary" type="button" onclick="addGroup()">Add</button>
+                            <button class="btn btn-primary" type="button" onclick="modifyGroup()">Modify</button>
+                            <button class="btn btn-danger" type="button" onclick="deleteGroup()">Delete</button>
                         </div>
                     </div>
-                    <div class="col" id="skill-aspects"></div>
+                    <div class="col mx-3 p-4 bg-light" id="skill-items">
+                        <label for="skill-selector">Skills</label>
+                        <div id="skill-list"></div>
+                        <div class="btn-group py-3 mt-auto" role="group">
+                            <button class="btn btn-primary" type="button" onclick="addSkill()">Add</button>
+                            <button class="btn btn-primary" type="button" onclick="modifySkill()">Modify</button>
+                            <button class="btn btn-danger" type="button" onclick="deleteSkill()">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
