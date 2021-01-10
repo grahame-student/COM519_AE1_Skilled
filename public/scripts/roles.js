@@ -67,13 +67,13 @@ async function getSkillList () {
   const skillDomRef = document.querySelector('#skill-list');
   try {
     console.log('requesting required skills');
-    const roleRef = await fetch(apiUrl);
-    const roles = await roleRef.json();
-    console.log(roles);
+    const skillRef = await fetch(apiUrl);
+    const skills = await skillRef.json();
+    console.log(skills);
 
-    // const skillHtml = [];
-    // skillHtml.push(roleList(roles));
-    // skillDomRef.innerHTML = roleHtml.join('');
+    const skillHtml = [];
+    skillHtml.push(skillList(skills));
+    skillDomRef.innerHTML = skillHtml.join('');
   } catch (e) {
     console.log(`error using skilled API: ${apiUrl}`);
     console.log(e);

@@ -37,7 +37,7 @@ const skillRequirementSchema = new Schema(
 const roleSchema = new Schema(
   {
     title: { type: String, required: [true, 'A job title is required'], unique: true },
-    'required skills': [ skillRequirementSchema ]
+    'required skills': [skillRequirementSchema]
   },
   { timestamps: true }
 );

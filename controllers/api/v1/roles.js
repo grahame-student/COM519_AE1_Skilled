@@ -15,10 +15,10 @@ exports.requestSkills = async (req, res) => {
   console.log('Requesting latest job role requirements');
   console.log('Title:                  ', title);
 
-  let result = await Role.aggregate()
+  const result = await Role.aggregate()
     .match({ title: title })
     .unwind('required skills')
-    .sort( { 'required skills.timestamp': -1 });
+    .sort({ 'required skills.timestamp': -1 });
 
   res.send(result[0]);
-}
+};
