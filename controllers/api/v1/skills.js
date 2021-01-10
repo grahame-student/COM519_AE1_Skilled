@@ -69,7 +69,7 @@ exports.update = async (req, res, next) => {
       requestedGroup = result;
     })
     .catch(handleErrors);
-  
+
   requestedGroup.skills = await requestedGroup.skills.map(x => x.replace(new RegExp(skill, 'g'), newSkill));
   await requestedGroup.save();
 
