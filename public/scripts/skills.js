@@ -27,7 +27,7 @@ const skillList = (skills) => {
 
   console.log(listStart + listBody + listEnd);
   return listStart + listBody + listEnd;
-}
+};
 
 // getGroupList is used from a client side webpage
 /* eslint-disable no-unused-vars */
@@ -181,7 +181,7 @@ async function addSkill () {
 
   const skillsList = newSkills
     .trim()
-    .split(',')
+    .split(',');
 
   console.log('Skills List', skillsList);
 
