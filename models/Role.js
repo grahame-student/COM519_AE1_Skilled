@@ -17,25 +17,27 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const roleSchema = new Schema(
+const skillRequirementSchema = new Schema(
   {
-    title: { type: String, required: [true, 'A job title is required'], unique: true },
-    requiredSkills: [
+    timeStamp: { type: Date, required: [true, 'A time stamp is required'], unique: true },
+    skills: [
       {
-        timeStamp: { type: Date, required: [true, 'A time stamp is required'], unique: true },
+        group: { type: String, required: [true, 'A skill group is required'], unique: true },
         skills: [
           {
-            group: { type: String, required: [true, 'A skill group is required'], unique: true },
-            skills: [
-              {
-                skill: { type: String, unique: true },
-                level: { type: Number, min: 0, max: 4, get: v => Math.round(v), set: v => Math.round(v) }
-              }
-            ]
+            skill: { type: String, unique: true },
+            level: { type: Number, min: 0, max: 4, get: v => Math.round(v), set: v => Math.round(v) }
           }
         ]
       }
     ]
+  }
+);
+
+const roleSchema = new Schema(
+  {
+    title: { type: String, required: [true, 'A job title is required'], unique: true },
+    'required skills': [ skillRequirementSchema ]
   },
   { timestamps: true }
 );

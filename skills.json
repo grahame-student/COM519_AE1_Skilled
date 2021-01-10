@@ -20,7 +20,7 @@
       "title": "software engineer",
       "required skills": [
         {
-          "timestamp": "2021-01-06 12:01:01",
+          "timestamp": "2021-01-06T12:01:01.000Z",
           "skills": [
             {
               "group": "software",
@@ -56,7 +56,7 @@
       "title": "hardware engineer",
       "required skills": [
         {
-          "timestamp": "2021-01-06 12:01:01",
+          "timestamp": "2021-01-06T12:01:01.000Z",
           "skills": [
             {
               "group": "software",
@@ -87,7 +87,7 @@
           ]
         },
         {
-          "timestamp": "2021-01-07 12:01:01",
+          "timestamp": "2021-01-07T12:01:01.000Z",
           "skills": [
             {
               "group": "software",
@@ -129,9 +129,9 @@
       "job title": "software engineer",
       "assessments": [
         {
-          "assessment timestamp": "2021-01-12 13:05:00",
+          "assessment timestamp": "2021-01-12T13:05:00.000Z",
           "role": "software engineer",
-          "role timestamp": "2021-01-07 12:01:01",
+          "role timestamp": "2021-01-06T12:01:01.000Z",
           "skills": [
             {
               "group": "software",
@@ -162,8 +162,9 @@
           ]
         },
         {
-          "assessment timestamp": "2021-01-01 13:05:00",
+          "assessment timestamp": "2021-01-01T13:05:00.000Z",
           "role": "hardware engineer",
+          "role timestamp": "2021-01-07T12:01:01.000Z",
           "skills": [
             {
               "group": "software",
