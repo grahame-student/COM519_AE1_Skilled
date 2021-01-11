@@ -158,7 +158,7 @@ async function addRole () {
   try {
     console.log(`creating new role: ${newRole}`);
     await fetch(apiUrl, {
-      method: 'POST',
+      method: 'POST'
     });
   } catch (e) {
     console.log(`error using skilled API: ${apiUrl}`);

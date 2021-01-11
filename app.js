@@ -92,7 +92,7 @@ app.delete('/api/v1/role/:title', roleApiController.delete); // remove single ro
 app.post('/api/v1/role/:title', roleApiController.add); //
 
 // requiredSkills API endpoints
-//app.post('/api/v1/requiredSkills/:title', upload.none(), roleApiController.add); //
+app.post('/api/v1/requiredSkills/:title', upload.none(), roleApiController.add); // add new skill requirements to job role
 
 /**
  * Start listening for incoming traffic

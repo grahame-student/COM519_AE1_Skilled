@@ -44,7 +44,7 @@ exports.add = async (req, res, next) => {
   const role = new Role({ title: title });
 
   // Get the list of skill groups
-  const opts = require("./apiOptions");
+  const opts = require('./apiOptions');
   const fetch = require('node-fetch');
   const baseUrl = await opts.apiurl();
   let groups;
@@ -57,13 +57,13 @@ exports.add = async (req, res, next) => {
     })
     .catch(handleErrors);
 
-  role['required skills'].push({ });
+  role['required skills'].push({});
   groups.forEach(group => {
     const skillList = [];
     group.skills.forEach(skill => {
       skillList.push({ skill: skill, level: 0 });
-      })
-    const skillGroup = { group: group.group, skills: skillList }
+    });
+    const skillGroup = { group: group.group, skills: skillList };
     role['required skills'][0].skills.push(skillGroup);
   });
   await role.save();

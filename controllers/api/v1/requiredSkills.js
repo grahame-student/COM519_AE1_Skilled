@@ -1,5 +1,3 @@
-const Role = require('../../../models/Role');
-
 exports.add = async (req, res) => {
   const title = req.params.title;
   const formData = req.body;
