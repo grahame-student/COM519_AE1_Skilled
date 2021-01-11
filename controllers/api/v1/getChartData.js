@@ -23,6 +23,10 @@ const chartSvg = (chart) => {
         .shape.required {
             fill: #008800;
         }
+        .shape.required:hover {
+            fill: #008800;
+            text-rendering: text;
+        }
         .shape.actual {
             fill: #880088;
         }
@@ -127,6 +131,7 @@ async function getSvgChart (groups, data) {
   const opts = {
     axes: true,
     scales: 4,
+    captions: true,
     size: 100,
     smoothing: smoothing(0.5),
     shapeProps: (data) => ({ className: 'shape ' + data.class })

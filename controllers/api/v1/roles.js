@@ -57,7 +57,7 @@ exports.update = async (req, res, next) => {
     if (err) return next(err);
     res.send(someValue);
   });
-}
+};
 
 exports.add = async (req, res, next) => {
   const title = req.params.title;
