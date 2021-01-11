@@ -35,33 +35,55 @@ exports.delete = async (req, res, next) => {
   });
 };
 
-exports.add = async (req, res) => {
+exports.add = async (req, res, next) => {
   const title = req.params.title;
-  const formData = req.body;
-  console.log('Saving Role Requirements');
-  console.log('Title :                 ', title);
-  console.log(formData);
+  console.log('Adding new role');
+  console.log('Title::                 ', title);
 
-  // TODO: Needs completing
-  // let requestedGroup;
-  // await SkillSet.findOne({ group: group })
-  //   .then(result => {
-  //     requestedGroup = result;
-  //   })
-  //   .catch(handleErrors);
-  //
-  // // merge then assign unique values
-  // // Based on: https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
-  // const mergedSkills = requestedGroup.skills.concat(skillList);
-  // requestedGroup.skills = mergedSkills.filter((v, i, a) => a.indexOf(v) === i);
-  // // FIXME: the items in new skills list may have extra spaces / or be empty
-  // console.log(requestedGroup.skills.toString());
-  // await requestedGroup.save();
-  //
-  // const query = SkillSet.findOne({ group: group });
-  // await query.exec(function (err, someValue) {
-  //   if (err) return next(err);
-  //   res.send(someValue);
-  // });
-  res.send(formData);
+  // Create new role
+  const role = new Role({ title: title });
+
+  // Get the list of skill groups
+  const opts = require("./apiOptions");
+  const fetch = require('node-fetch');
+  const baseUrl = await opts.apiurl();
+  let groups;
+  console.log(`Getting group list using endpoint: ${baseUrl}/api/v1/group`);
+  await fetch(`${baseUrl}/api/v1/groups`)
+    .then(checkStatus)
+    .then(res => res.json())
+    .then(objData => {
+      groups = objData;
+    })
+    .catch(handleErrors);
+
+  role['required skills'].push({ });
+  groups.forEach(group => {
+    const skillList = [];
+    group.skills.forEach(skill => {
+      skillList.push({ skill: skill, level: 0 });
+      })
+    const skillGroup = { group: group.group, skills: skillList }
+    role['required skills'][0].skills.push(skillGroup);
+  });
+  await role.save();
+
+  const query = Role.findOne({ title: title });
+  await query.exec(function (err, someValue) {
+    if (err) return next(err);
+    res.send(someValue);
+  });
 };
+
+async function checkStatus (res) {
+  if (res.ok) {
+    // res.status >= 200 && res.status < 300
+    return res;
+  } else {
+    console.log('Unable to obtain valid result');
+  }
+}
+
+async function handleErrors (error) {
+  console.log(error);
+}

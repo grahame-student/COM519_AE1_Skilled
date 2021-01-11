@@ -73,6 +73,7 @@ app.get('/api/v1/chartGroup', chartApiController.groups);
 app.get('/api/v1/chartData', chartApiController.data);
 
 // skill groups API endpoints
+app.get('/api/v1/groups', skillGroupApiController.getAll); // Get all skill groups
 app.get('/api/v1/group', skillGroupApiController.list); // Get list of skill groups
 app.get('/api/v1/group/:group', skillGroupApiController.request); // Get single skill group
 app.delete('/api/v1/group/:group', skillGroupApiController.delete); // remove single skill group
@@ -87,9 +88,11 @@ app.patch('/api/v1/skill/:group/:skill', skillApiController.update); // update s
 // role API endpoints
 app.get('/api/v1/role', roleApiController.list); // Get list of all job roles
 app.get('/api/v1/role/:title/skill', roleApiController.requestSkills); // Get latest requirements for job role (latest date)
-// app.get('/api/v1/role/:title/skill/:date'); // Get requirements for job role (specified date)
 app.delete('/api/v1/role/:title', roleApiController.delete); // remove single role
-app.post('/api/v1/role/:title', upload.none(), roleApiController.add); //
+app.post('/api/v1/role/:title', roleApiController.add); //
+
+// requiredSkills API endpoints
+//app.post('/api/v1/requiredSkills/:title', upload.none(), roleApiController.add); //
 
 /**
  * Start listening for incoming traffic

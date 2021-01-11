@@ -54,6 +54,12 @@ const skillControls = (group, skill, level, skillNo) => {
 async function onLoad () {
   /* eslint-enable no-unused-vars */
   await getRoleList();
+
+  const sel = document.getElementById('role-selector');
+  if (sel != null && sel.length > 0) {
+    sel.selectedIndex = 0;
+  }
+
   await getSkillList();
 }
 
@@ -120,13 +126,13 @@ async function saveRole () {
 
   /* eslint-disable no-undef */
   // getParam becomes visible once deployed on the server
-  const apiUrl = `/api/v1/role/${getParam(selectedRole)}`;
+  const apiUrl = `/api/v1/requiredSkills/${getParam(selectedRole)}`;
   /* eslint-enable no-undef */
 
   try {
     console.log(`saving new role values for: ${selectedRole}`);
     await fetch(apiUrl, {
-      method: 'POST',
+      method: 'PATCH',
       body: formData
     });
   } catch (e) {
@@ -141,6 +147,25 @@ async function saveRole () {
 /* eslint-disable no-unused-vars */
 async function addRole () {
   /* eslint-enable no-unused-vars */
+  const newRole = prompt('Enter the name of the new job role');
+  if (newRole === null) return;
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/role/${getParam(newRole)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`creating new role: ${newRole}`);
+    await fetch(apiUrl, {
+      method: 'POST',
+    });
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
+  }
+
+  await getRoleList();
 }
 
 // getSkillList is used from a client side webpage
