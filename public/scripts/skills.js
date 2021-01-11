@@ -29,6 +29,17 @@ const skillList = (skills) => {
   return listStart + listBody + listEnd;
 };
 
+async function onLoad () {
+  await getGroupList();
+
+  const sel = document.getElementById('group-selector');
+  if (sel != null && sel.length > 0) {
+    sel.selectedIndex = 0;
+  }
+
+  await getSkillList();
+}
+
 // getGroupList is used from a client side webpage
 /* eslint-disable no-unused-vars */
 async function getGroupList () {
@@ -133,6 +144,7 @@ async function deleteGroup () {
     await fetch(apiUrl, { method: 'DELETE' });
 
     await getGroupList();
+    await getSkillList();
   } catch (e) {
     console.log(e);
     console.log(`error using skilled API: ${apiUrl}`);

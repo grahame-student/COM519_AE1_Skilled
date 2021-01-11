@@ -80,15 +80,16 @@ app.post('/api/v1/group', skillGroupApiController.add); // add new skill group
 app.patch('/api/v1/group/:group', skillGroupApiController.update); // update single skill groups
 
 // skills API endpoints
-app.post('/api/v1/skill/:group', skillApiController.add); // add skills to a skill group
 app.delete('/api/v1/skill/:group/:skill', skillApiController.delete); // remove single skill from a skill group
+app.post('/api/v1/skill/:group', skillApiController.add); // add skills to a skill group
 app.patch('/api/v1/skill/:group/:skill', skillApiController.update); // update single skill from a skill group
 
 // role API endpoints
 app.get('/api/v1/role', roleApiController.list); // Get list of all job roles
 app.get('/api/v1/role/:title/skill', roleApiController.requestSkills); // Get latest requirements for job role (latest date)
 // app.get('/api/v1/role/:title/skill/:date'); // Get requirements for job role (specified date)
-app.post('/api/v1/role/:title', upload.none(), roleApiController.add);
+app.delete('/api/v1/role/:title', roleApiController.delete); // remove single role
+app.post('/api/v1/role/:title', upload.none(), roleApiController.add); //
 
 /**
  * Start listening for incoming traffic

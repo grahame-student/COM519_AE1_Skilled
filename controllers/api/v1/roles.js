@@ -23,6 +23,18 @@ exports.requestSkills = async (req, res) => {
   res.send(result[0]);
 };
 
+exports.delete = async (req, res, next) => {
+  const title = req.params.title;
+  console.log('Deleting role');
+  console.log('Title:                  ', title);
+
+  const query = Role.findOneAndDelete({ title: title });
+  query.exec(function (err, someValue) {
+    if (err) return next(err);
+    res.send(someValue);
+  });
+};
+
 exports.add = async (req, res) => {
   const title = req.params.title;
   const formData = req.body;
@@ -30,6 +42,7 @@ exports.add = async (req, res) => {
   console.log('Title :                 ', title);
   console.log(formData);
 
+  // TODO: Needs completing
   // let requestedGroup;
   // await SkillSet.findOne({ group: group })
   //   .then(result => {

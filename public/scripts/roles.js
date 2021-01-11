@@ -35,7 +35,7 @@ const skillList = (skills) => {
 };
 
 const skillControls = (group, skill, level, skillNo) => {
-  let listStart = '<div class="input-group mb-3 overflow-auto">';
+  let listStart = '<div class="input-group mb-1 overflow-auto">';
   listStart += '<div class="input-group-prepend w-75">';
 
   let listBody = `<span class="input-group-text w-100">${group} - ${skill}</span>`;
@@ -48,6 +48,11 @@ const skillControls = (group, skill, level, skillNo) => {
 
   return listStart + listBody + listEnd;
 };
+
+async function onLoad () {
+  await getRoleList();
+  await getSkillList();
+}
 
 // getRoleList is used from a client side webpage
 /* eslint-disable no-unused-vars */
@@ -125,5 +130,35 @@ async function saveRole () {
   } catch (e) {
     console.log(`error using skilled API: ${apiUrl}`);
     console.log(e);
+  }
+
+  // TODO: Needs completing
+}
+
+async function addRole () {
+}
+
+async function modifyRole () {
+}
+
+async function deleteRole () {
+  /* eslint-enable no-unused-vars */
+  const selectedRole = document.getElementById('role-selector').value;
+  console.log('Job role selected: ', selectedRole);
+  if (selectedRole === null) return;
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/role/${getParam(selectedRole)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`deleting role: ${selectedRole}`);
+    await fetch(apiUrl, { method: 'DELETE' });
+
+    await getRoleList();
+  } catch (e) {
+    console.log(e);
+    console.log(`error using skilled API: ${apiUrl}`);
   }
 }

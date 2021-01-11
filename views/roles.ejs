@@ -15,7 +15,7 @@
         <script src="scripts/roles.js"></script>
         <script src="scripts/api_helper.js"></script>
     </head>
-    <body onload="getRoleList()">
+    <body onload="onLoad()">
         <%- include('common/header'); -%>
 
         <main role="main">
@@ -35,9 +35,9 @@
                         -->
                         <div id="role-list"></div>
                         <div class="btn-group py-3 mt-auto" role="group">
-                            <button class="btn btn-primary" type="button" onclick="addGroup()">Add</button>
-                            <button class="btn btn-primary" type="button" onclick="modifyGroup()">Modify</button>
-                            <button class="btn btn-danger" type="button" onclick="deleteGroup()">Delete</button>
+                            <button class="btn btn-primary" type="button" onclick="addRole()">Add</button>
+                            <button class="btn btn-primary" type="button" onclick="modifyRole()">Modify</button>
+                            <button class="btn btn-danger" type="button" onclick="deleteRole()">Delete</button>
                         </div>
                     </div>
                     <div class="col mx-3 p-4 bg-light" id="skill-items">
