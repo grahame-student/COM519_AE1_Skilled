@@ -4,6 +4,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
+const multer = require('multer');
+const upload = multer();
 
 /**
  * Controllers (route handlers).
@@ -43,7 +45,7 @@ mongoose.connection.on('error', (err) => {
  */
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(expressSession({ secret: SESSION_SECRET, cookie: { expires: new Date(253402300000000) } }));
 
@@ -86,6 +88,7 @@ app.patch('/api/v1/skill/:group/:skill', skillApiController.update); // update s
 app.get('/api/v1/role', roleApiController.list); // Get list of all job roles
 app.get('/api/v1/role/:title/skill', roleApiController.requestSkills); // Get latest requirements for job role (latest date)
 // app.get('/api/v1/role/:title/skill/:date'); // Get requirements for job role (specified date)
+app.post('/api/v1/role/:title', upload.none(), roleApiController.add);
 
 /**
  * Start listening for incoming traffic

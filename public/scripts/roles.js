@@ -17,28 +17,32 @@ const skillList = (skills) => {
   const reqSkills = skills['required skills'].skills;
   console.log(reqSkills);
 
-  const listStart = '<div class="container">';
+  let listStart = '<div class="container">';
+  listStart += '<form id="skills-form" name="skills-form" method="post">';
 
   let listBody = '';
+  let skillNo = 0;
   reqSkills.forEach(group => {
     group.skills.forEach(skill => {
-      listBody += skillControls(group.group, skill.skill, skill.level);
+      listBody += skillControls(group.group, skill.skill, skill.level, skillNo);
+      skillNo++;
     });
   });
 
-  const listEnd = '</div>';
+  const listEnd = '</form></div>';
 
-  console.log(listStart + listBody + listEnd);
   return listStart + listBody + listEnd;
 };
 
-const skillControls = (group, skill, level) => {
+const skillControls = (group, skill, level, skillNo) => {
   let listStart = '<div class="input-group mb-3 overflow-auto">';
   listStart += '<div class="input-group-prepend w-75">';
 
   let listBody = `<span class="input-group-text w-100">${group} - ${skill}</span>`;
   listBody += '</div>';
-  listBody += `<input type="number" class="form-control" name="required[${group}][${skill}]" min="0" max="4" value="${level}" required>`;
+  listBody += `<input type="number" class="form-control" name="requiredSkill[${skillNo}][level]" min="0" max="4" value="${level}" required>`;
+  listBody += `<input type="hidden" name="requiredSkill[${skillNo}][group]" value="${group}">`;
+  listBody += `<input type="hidden" name="requiredSkill[${skillNo}][skill]" value="${skill}">`;
 
   const listEnd = '</div>';
 
@@ -90,6 +94,31 @@ async function getSkillList () {
     const skillHtml = [];
     skillHtml.push(skillList(skills));
     skillDomRef.innerHTML = skillHtml.join('');
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
+  }
+}
+
+async function saveRole () {
+  const selectedRole = document.getElementById('role-selector').value;
+  console.log('Job role selected: ', selectedRole);
+  if (selectedRole === null) return;
+
+  const formElement = document.getElementById('skills-form');
+  const formData = new FormData(formElement);
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/role/${getParam(selectedRole)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`saving new role values for: ${selectedRole}`);
+    await fetch(apiUrl, {
+      method: 'POST',
+      body: formData
+    });
   } catch (e) {
     console.log(`error using skilled API: ${apiUrl}`);
     console.log(e);
