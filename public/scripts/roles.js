@@ -172,6 +172,34 @@ async function addRole () {
 /* eslint-disable no-unused-vars */
 async function modifyRole () {
   /* eslint-enable no-unused-vars */
+  const selectedRole = document.getElementById('role-selector').value;
+  console.log('Job role selected: ', selectedRole);
+  if (selectedRole === null) return;
+
+  const newRole = prompt('Enter the new title of the job role', selectedRole);
+  if (newRole === null) return;
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/role/${getParam(selectedRole)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`changing role from ${selectedRole} to ${newRole}`);
+    await fetch(apiUrl, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title: newRole })
+    });
+
+    await getRoleList();
+  } catch (e) {
+    console.log(e);
+    console.log(`error using skilled API: ${apiUrl}`);
+  }
 }
 
 // getSkillList is used from a client side webpage

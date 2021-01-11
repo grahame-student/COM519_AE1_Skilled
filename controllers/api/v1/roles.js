@@ -35,6 +35,30 @@ exports.delete = async (req, res, next) => {
   });
 };
 
+exports.update = async (req, res, next) => {
+  const oldRole = req.params.title;
+  const newRole = req.body.title;
+  console.log('Updating job role group');
+  console.log('From:                   ', oldRole);
+  console.log('To:                     ', newRole);
+
+  let requestedRole;
+  await Role.findOne({ title: oldRole })
+    .then(result => {
+      requestedRole = result;
+    })
+    .catch(handleErrors);
+
+  requestedRole.title = newRole;
+  await requestedRole.save();
+
+  const query = Role.findOne({ title: newRole });
+  await query.exec(function (err, someValue) {
+    if (err) return next(err);
+    res.send(someValue);
+  });
+}
+
 exports.add = async (req, res, next) => {
   const title = req.params.title;
   console.log('Adding new role');

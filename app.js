@@ -89,7 +89,8 @@ app.patch('/api/v1/skill/:group/:skill', skillApiController.update); // update s
 app.get('/api/v1/role', roleApiController.list); // Get list of all job roles
 app.get('/api/v1/role/:title/skill', roleApiController.requestSkills); // Get latest requirements for job role (latest date)
 app.delete('/api/v1/role/:title', roleApiController.delete); // remove single role
-app.post('/api/v1/role/:title', roleApiController.add); //
+app.post('/api/v1/role/:title', roleApiController.add); // create a new job role with the passed in title, all skill requirements will be set to 0
+app.patch('/api/v1/role/:title', roleApiController.update); // update single role
 
 // requiredSkills API endpoints
 app.post('/api/v1/requiredSkills/:title', upload.none(), roleApiController.add); // add new skill requirements to job role
