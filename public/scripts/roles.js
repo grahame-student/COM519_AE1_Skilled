@@ -71,7 +71,7 @@ async function getRoleList () {
   }
 }
 
-// getRoleList is used from a client side webpage
+// getSkillList is used from a client side webpage
 /* eslint-disable no-unused-vars */
 async function getSkillList () {
   /* eslint-enable no-unused-vars */
@@ -100,7 +100,10 @@ async function getSkillList () {
   }
 }
 
+// getSkillList is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function saveRole () {
+  /* eslint-enable no-unused-vars */
   const selectedRole = document.getElementById('role-selector').value;
   console.log('Job role selected: ', selectedRole);
   if (selectedRole === null) return;
