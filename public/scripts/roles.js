@@ -49,7 +49,10 @@ const skillControls = (group, skill, level, skillNo) => {
   return listStart + listBody + listEnd;
 };
 
+// onLoad is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function onLoad () {
+  /* eslint-enable no-unused-vars */
   await getRoleList();
   await getSkillList();
 }
@@ -58,7 +61,6 @@ async function onLoad () {
 /* eslint-disable no-unused-vars */
 async function getRoleList () {
   /* eslint-enable no-unused-vars */
-
   const apiUrl = '/api/v1/role';
 
   const roleDomRef = document.querySelector('#role-list');
@@ -135,12 +137,20 @@ async function saveRole () {
   // TODO: Needs completing
 }
 
+// getSkillList is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function addRole () {
+  /* eslint-enable no-unused-vars */
 }
 
+// getSkillList is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function modifyRole () {
+  /* eslint-enable no-unused-vars */
 }
 
+// getSkillList is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function deleteRole () {
   /* eslint-enable no-unused-vars */
   const selectedRole = document.getElementById('role-selector').value;
@@ -157,6 +167,7 @@ async function deleteRole () {
     await fetch(apiUrl, { method: 'DELETE' });
 
     await getRoleList();
+    await getSkillList();
   } catch (e) {
     console.log(e);
     console.log(`error using skilled API: ${apiUrl}`);

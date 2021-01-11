@@ -29,7 +29,10 @@ const skillList = (skills) => {
   return listStart + listBody + listEnd;
 };
 
+// getGroupList is used from a client side webpage
+/* eslint-disable no-unused-vars */
 async function onLoad () {
+  /* eslint-enable no-unused-vars */
   await getGroupList();
 
   const sel = document.getElementById('group-selector');
@@ -44,7 +47,6 @@ async function onLoad () {
 /* eslint-disable no-unused-vars */
 async function getGroupList () {
   /* eslint-enable no-unused-vars */
-
   const apiUrl = '/api/v1/group';
 
   const groupDomRef = document.querySelector('#group-list');
