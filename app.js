@@ -104,6 +104,7 @@ app.get('/api/v1/employees', employeeApiController.list); // get a list of all e
 app.get('/api/v1/employee/:email', employeeApiController.request); // get single employee by email
 app.delete('/api/v1/employee/:email', employeeApiController.delete); // remove single employee by email
 app.post('/api/v1/employee', employeeApiController.add); // add a new employee
+app.patch('/api/v1/employee/:email', upload.none(), employeeApiController.update); // save changes to single employee
 
 /**
  * Start listening for incoming traffic

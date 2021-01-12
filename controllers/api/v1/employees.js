@@ -50,3 +50,38 @@ exports.add = async (req, res, next) => {
     res.status(201).json(someValue);
   });
 };
+
+exports.update = async (req, res, next) => {
+  const currentEmail = req.params.email;
+
+  const newEmail = req.body['employee-email'];
+  const name = req.body['employee-name'];
+  const title = req.body['employee-title'];
+  console.log('Saving Employee Details');
+  console.log('Old email:              ', currentEmail);
+  console.log('New email:              ', newEmail);
+  console.log('Name     :              ', name);
+  console.log('Job Title:              ', title);
+
+  let requestedEmployee;
+  await Employee.findOne({ email: currentEmail })
+    .then(result => {
+      requestedEmployee = result;
+    })
+    .catch(handleErrors);
+
+  requestedEmployee.name = name;
+  requestedEmployee.email = newEmail;
+  requestedEmployee['job title'] = title;
+  requestedEmployee.save();
+
+  const query = Employee.findOne({ email: newEmail });
+  query.exec(function (err, someValue) {
+    if (err) return next(err);
+    res.status(201).json(someValue);
+  });
+};
+
+async function handleErrors (error) {
+  console.log(error);
+}

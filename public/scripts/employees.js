@@ -107,6 +107,36 @@ async function getEmployeeDetails () {
 /* eslint-disable no-unused-vars */
 async function saveEmployee () {
   /* eslint-enable no-unused-vars */
+  const selectedEmployee = document.getElementById('employee-selector').value;
+  console.log('Job role selected: ', selectedEmployee);
+  if (selectedEmployee === null) return;
+
+  const formElement = document.getElementById('details-form');
+  const formData = new FormData(formElement);
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/employee/${getParam(selectedEmployee)}`;
+  /* eslint-enable no-undef */
+
+  try {
+    console.log(`saving new employee values for: ${selectedEmployee}`);
+    const updatedEmployee = await fetch(apiUrl, {
+      method: 'PATCH',
+      body: formData
+    }).then((res) => {
+      return res.json();
+    });
+
+    await getEmployeeList();
+
+    const employeeSelector = document.getElementById('employee-selector');
+    employeeSelector.selectedIndex = [...employeeSelector.options].findIndex(option => option.value === updatedEmployee.email);
+    await getEmployeeDetails();
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
+  }
 }
 
 // addEmployee is used from a client side webpage
