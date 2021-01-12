@@ -6,7 +6,7 @@ const AssessedSkillSchema = new Schema({
   skill: { type: String, required: [true, 'A skill name is required'] },
   'required level': { type: Number, min: 0, max: 4, get: v => Math.round(v), set: v => Math.round(v), default: 0 },
   'actual level': { type: Number, min: 0, max: 4, get: v => Math.round(v), set: v => Math.round(v), default: 0 }
-})
+});
 
 const SkillGroupSchema = new Schema({
   group: { type: String, required: true },
