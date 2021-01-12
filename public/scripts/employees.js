@@ -17,7 +17,7 @@ const detailsList = (details) => {
   let listStart = '<div class="container">';
   listStart += '<form id="details-form" name="details-form" method="post">';
 
-  let listBody = '' +
+  const listBody = '' +
     '<div class="input-group mb-1 overflow-auto">' +
     '  <div class="input-group-prepend w-25">' +
     '    <span class="input-group-text w-100">Name</span>' +
@@ -35,7 +35,7 @@ const detailsList = (details) => {
     '    <span class="input-group-text w-100">Job Title</span>' +
     '  </div>' +
     `  <input type="text" class="form-control" name="employee-title" value="${details['job title']}" required>` +
-    '</div>'
+    '</div>';
 
   const listEnd = '</form></div>';
 
