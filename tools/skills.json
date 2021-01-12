@@ -122,27 +122,26 @@
   ],
   "employees": [
     {
-      "name": {
-        "first name": "Joe",
-        "last name": "Bloggs"
-      },
+      "name": "Joe Bloggs",
+      "email": "joe.bloggs@domain.com",
       "job title": "software engineer",
       "assessments": [
         {
           "assessment timestamp": "2021-01-12T13:05:00.000Z",
           "role": "software engineer",
-          "role timestamp": "2021-01-06T12:01:01.000Z",
           "skills": [
             {
               "group": "software",
               "skills": [
                 {
                   "skill": "driver creation",
-                  "level": 0
+                  "required level": 3,
+                  "actual level": 2
                 },
                 {
                   "skill": "unit testing",
-                  "level": 0
+                  "required level": 3,
+                  "actual level": 4
                 }
               ]
             },
@@ -151,11 +150,13 @@
               "skills": [
                 {
                   "skill": "analogue circuit design",
-                  "level": 0
+                  "required level": 1,
+                  "actual level": 2
                 },
                 {
                   "skill": "digital circuit design",
-                  "level": 0
+                  "required level": 1,
+                  "actual level": 2
                 }
               ]
             }
@@ -164,18 +165,19 @@
         {
           "assessment timestamp": "2021-01-01T13:05:00.000Z",
           "role": "hardware engineer",
-          "role timestamp": "2021-01-07T12:01:01.000Z",
           "skills": [
             {
               "group": "software",
               "skills": [
                 {
                   "skill": "driver creation",
-                  "level": 0
+                  "required level": 1,
+                  "actual level": 2
                 },
                 {
                   "skill": "unit testing",
-                  "level": 0
+                  "required level": 1,
+                  "actual level": 3
                 }
               ]
             },
@@ -184,11 +186,128 @@
               "skills": [
                 {
                   "skill": "analogue circuit design",
-                  "level": 0
+                  "required level": 3,
+                  "actual level": 4
                 },
                 {
                   "skill": "digital circuit design",
-                  "level": 0
+                  "required level": 3,
+                  "actual level": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "An Other",
+      "email": "an.other@domain.com",
+      "job title": "hardware engineer",
+      "assessments": [
+        {
+          "assessment timestamp": "2021-01-01T13:05:00.000Z",
+          "role": "hardware engineer",
+          "skills": [
+            {
+              "group": "software",
+              "skills": [
+                {
+                  "skill": "driver creation",
+                  "required level": 3,
+                  "actual level": 2
+                },
+                {
+                  "skill": "unit testing",
+                  "required level": 3,
+                  "actual level": 4
+                }
+              ]
+            },
+            {
+              "group": "hardware",
+              "skills": [
+                {
+                  "skill": "analogue circuit design",
+                  "required level": 1,
+                  "actual level": 2
+                },
+                {
+                  "skill": "digital circuit design",
+                  "required level": 1,
+                  "actual level": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "assessment timestamp": "2021-02-05T13:05:00.000Z",
+          "role": "hardware engineer",
+          "skills": [
+            {
+              "group": "software",
+              "skills": [
+                {
+                  "skill": "driver creation",
+                  "required level": 1,
+                  "actual level": 2
+                },
+                {
+                  "skill": "unit testing",
+                  "required level": 1,
+                  "actual level": 3
+                }
+              ]
+            },
+            {
+              "group": "hardware",
+              "skills": [
+                {
+                  "skill": "analogue circuit design",
+                  "required level": 3,
+                  "actual level": 4
+                },
+                {
+                  "skill": "digital circuit design",
+                  "required level": 3,
+                  "actual level": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "assessment timestamp": "2020-12-25T13:05:00.000Z",
+          "role": "software engineer",
+          "skills": [
+            {
+              "group": "software",
+              "skills": [
+                {
+                  "skill": "driver creation",
+                  "required level": 1,
+                  "actual level": 2
+                },
+                {
+                  "skill": "unit testing",
+                  "required level": 1,
+                  "actual level": 3
+                }
+              ]
+            },
+            {
+              "group": "hardware",
+              "skills": [
+                {
+                  "skill": "analogue circuit design",
+                  "required level": 3,
+                  "actual level": 4
+                },
+                {
+                  "skill": "digital circuit design",
+                  "required level": 3,
+                  "actual level": 2
                 }
               ]
             }

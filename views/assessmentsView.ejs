@@ -4,33 +4,31 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="description" content=""/>
-        <title>Employee Skill Assessment - View Assessments</title>
+        <title>Employee Skill Assessment - Sign In</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/"/>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
               integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
               crossorigin="anonymous"/>
-        <link href="css/album.css" rel="stylesheet"/>
         <link href="css/skilled.css" rel="stylesheet"/>
-        <!--
-        <script src="scripts/search-tasting.js"></script>
-        -->
+        <script src="scripts/chart.js"></script>
     </head>
-    <body>
+    <body onload="loadChart()">
         <%- include('common/header'); -%>
 
         <main role="main">
             <section class="jumbotron text-center">
                 <div class="container">
                     <h1>Track Employee Skills Against Their Job Role</h1>
-                    <p class="lead text-muted">Talent management onna page.</p>
+                    <p class="lead text-muted">Talent management on a page.</p>
                 </div>
             </section>
 
-            <div class="album py-5 bg-light">
-                <div class="container">
-                    <canvas class="my-4 w-100" id="myChart" width="400" height="400"></canvas>
+            <div class="container">
+                <div class="row">
+                    <div class="col" id="skills-controls"></div>
+                    <div class="col" id="skills-chart-container"></div>
                 </div>
             </div>
         </main>

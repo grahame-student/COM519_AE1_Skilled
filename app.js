@@ -13,6 +13,7 @@ const upload = multer();
 const homeController = require('./controllers/home');
 const skillsController = require('./controllers/skills');
 const rolesController = require('./controllers/roles');
+const employeesController = require('./controllers/employees');
 
 /**
  * API Controllers
@@ -22,6 +23,7 @@ const skillGroupApiController = require('./controllers/api/v1/skillGroups');
 const skillApiController = require('./controllers/api/v1/skills');
 const roleApiController = require('./controllers/api/v1/roles');
 const requiredSkillsApiController = require('./controllers/api/v1/requiredSkills');
+const employeeApiController = require('./controllers/api/v1/employees');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -57,6 +59,7 @@ app.get('/', homeController.list);
 
 app.get('/edit-skills', skillsController.list);
 app.get('/edit-roles', rolesController.list);
+app.get('/edit-employees', employeesController.list);
 
 // TODO: Not yet implemented
 app.get('/logout', async (req, res) => {
@@ -95,6 +98,10 @@ app.patch('/api/v1/role/:title', roleApiController.update); // update single rol
 
 // requiredSkills API endpoints
 app.patch('/api/v1/requiredSkills/:title', upload.none(), requiredSkillsApiController.add); // save new skill requirements to job role
+
+// employee API endpoints
+app.get('/api/v1/employees', employeeApiController.list); // get a list of all employee names
+app.get('/api/v1/employee/:email', employeeApiController.request); // get single employee by email
 
 /**
  * Start listening for incoming traffic
