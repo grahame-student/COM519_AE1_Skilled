@@ -18,7 +18,7 @@ exports.add = async (req, res, next) => {
     .catch(handleErrors);
 
   // { group: '', skill: '', level: 0 }
-  let groups = [];
+  const groups = [];
   requiredSkill.forEach(skill => {
     const inGroups = groups[skill.group] != null;
     if (!inGroups) {
