@@ -21,3 +21,15 @@ exports.request = async (req, res, next) => {
     res.send(someValue);
   });
 };
+
+exports.delete = async (req, res, next) => {
+  const email = req.params.email;
+  console.log('Deleting employee');
+  console.log('Email:                  ', email);
+
+  const query = Employee.findOneAndDelete({ email: email });
+  query.exec(function (err, someValue) {
+    if (err) return next(err);
+    res.send(someValue);
+  });
+};

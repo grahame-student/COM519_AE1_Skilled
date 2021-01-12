@@ -1,6 +1,5 @@
 const employeeList = (employees) => {
   const length = Math.min(10, employees.length);
-
   const listStart = `<select id="employee-selector" size="${length}" onchange="getEmployeeDetails()">`;
 
   let listBody = '';
@@ -120,4 +119,25 @@ async function addEmployee () {
 /* eslint-disable no-unused-vars */
 async function deleteEmployee () {
   /* eslint-enable no-unused-vars */
+  const selectedEmployee = document.getElementById('employee-selector').value;
+  console.log('Job role selected: ', selectedEmployee);
+  if (selectedEmployee === null) return;
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/employee/${getParam(selectedEmployee)}`;
+  /* eslint-enable no-undef */
+
+  const detailsDomRef = document.querySelector('#employee-details');
+  try {
+    console.log('deleting employee');
+    await fetch(apiUrl, { method: 'DELETE' });
+    const detailsRef = await fetch(apiUrl);
+
+    await getEmployeeList();
+    await getEmployeeDetails();
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
+  }
 }

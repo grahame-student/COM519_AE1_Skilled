@@ -102,6 +102,7 @@ app.patch('/api/v1/requiredSkills/:title', upload.none(), requiredSkillsApiContr
 // employee API endpoints
 app.get('/api/v1/employees', employeeApiController.list); // get a list of all employee names
 app.get('/api/v1/employee/:email', employeeApiController.request); // get single employee by email
+app.delete('/api/v1/employee/:email', employeeApiController.delete); // remove single employee by email
 
 /**
  * Start listening for incoming traffic

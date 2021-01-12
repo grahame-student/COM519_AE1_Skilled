@@ -139,8 +139,6 @@ async function saveRole () {
     console.log(`error using skilled API: ${apiUrl}`);
     console.log(e);
   }
-
-  // TODO: Needs completing
 }
 
 // getSkillList is used from a client side webpage
