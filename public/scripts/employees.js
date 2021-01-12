@@ -128,11 +128,9 @@ async function deleteEmployee () {
   const apiUrl = `/api/v1/employee/${getParam(selectedEmployee)}`;
   /* eslint-enable no-undef */
 
-  const detailsDomRef = document.querySelector('#employee-details');
   try {
     console.log('deleting employee');
     await fetch(apiUrl, { method: 'DELETE' });
-    const detailsRef = await fetch(apiUrl);
 
     await getEmployeeList();
     await getEmployeeDetails();
