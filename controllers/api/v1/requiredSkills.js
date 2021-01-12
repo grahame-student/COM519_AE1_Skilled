@@ -1,30 +1,52 @@
-exports.add = async (req, res) => {
-  const title = req.params.title;
-  const formData = req.body;
-  console.log('Saving Role Requirements');
-  console.log('Title :                 ', title);
-  console.log(formData);
+const Role = require('../../../models/Role');
 
-  // TODO: Needs completing
-  // let requestedGroup;
-  // await SkillSet.findOne({ group: group })
-  //   .then(result => {
-  //     requestedGroup = result;
-  //   })
-  //   .catch(handleErrors);
-  //
-  // // merge then assign unique values
-  // // Based on: https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
-  // const mergedSkills = requestedGroup.skills.concat(skillList);
-  // requestedGroup.skills = mergedSkills.filter((v, i, a) => a.indexOf(v) === i);
-  // // FIXME: the items in new skills list may have extra spaces / or be empty
-  // console.log(requestedGroup.skills.toString());
-  // await requestedGroup.save();
-  //
-  // const query = SkillSet.findOne({ group: group });
-  // await query.exec(function (err, someValue) {
-  //   if (err) return next(err);
-  //   res.send(someValue);
-  // });
-  res.send(formData);
+exports.add = async (req, res, next) => {
+  const title = req.params.title;
+
+  // HACK: I think I'm doing something wrong somewhere as req.body logs as a null prototype object
+  //       round-tripping using JSON causes the logging to appear as expected
+  const requiredSkill = JSON.parse(JSON.stringify(req.body)).requiredSkill;
+  console.log('Saving Role Requirements');
+  console.log('Title:                  ', title);
+  console.log('Required Skills:        ', requiredSkill);
+
+  let requestedRole;
+  await Role.findOne({ title: title })
+    .then(result => {
+      requestedRole = result;
+    })
+    .catch(handleErrors);
+
+  // { group: '', skill: '', level: 0 }
+  let groups = [];
+  requiredSkill.forEach(skill => {
+    const inGroups = groups[skill.group] != null;
+    if (!inGroups) {
+      groups[skill.group] = [{ skill: skill.skill, level: skill.level }];
+    } else {
+      groups[skill.group].push({ skill: skill.skill, level: skill.level });
+    }
+  });
+
+  requestedRole['required skills'].push({});
+  Object.keys(groups).forEach((group) => {
+    const skillList = [];
+    groups[group].forEach(skill => {
+      skillList.push({ skill: skill.skill, level: skill.level });
+    });
+    const skillGroup = { group: group, skills: skillList };
+    const lastElement = requestedRole['required skills'].length - 1;
+    requestedRole['required skills'][lastElement].skills.push(skillGroup);
+  });
+  await requestedRole.save();
+
+  const query = Role.findOne({ title: title });
+  await query.exec(function (err, someValue) {
+    if (err) return next(err);
+    res.send(someValue);
+  });
 };
+
+async function handleErrors (error) {
+  console.log(error);
+}

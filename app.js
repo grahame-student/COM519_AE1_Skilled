@@ -21,6 +21,7 @@ const chartApiController = require('./controllers/api/v1/getChartData');
 const skillGroupApiController = require('./controllers/api/v1/skillGroups');
 const skillApiController = require('./controllers/api/v1/skills');
 const roleApiController = require('./controllers/api/v1/roles');
+const requiredSkillsApiController = require('./controllers/api/v1/requiredSkills');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -31,7 +32,7 @@ const { PORT, MONGODB_URI, SESSION_SECRET } = process.env;
  * connect to database
  */
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log(
@@ -93,7 +94,7 @@ app.post('/api/v1/role/:title', roleApiController.add); // create a new job role
 app.patch('/api/v1/role/:title', roleApiController.update); // update single role
 
 // requiredSkills API endpoints
-app.post('/api/v1/requiredSkills/:title', upload.none(), roleApiController.add); // add new skill requirements to job role
+app.patch('/api/v1/requiredSkills/:title', upload.none(), requiredSkillsApiController.add); // save new skill requirements to job role
 
 /**
  * Start listening for incoming traffic

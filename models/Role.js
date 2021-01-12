@@ -18,7 +18,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const skillRequirementSchema = new Schema({
-  timeStamp: { type: Date, required: [true, 'A time stamp is required'], unique: true, default: Date.now },
+  dateDefined: { type: Date, required: [true, 'A time stamp is required'], unique: true, default: Date.now },
   skills: [
     {
       group: { type: String, required: [true, 'A skill group is required'], unique: true },

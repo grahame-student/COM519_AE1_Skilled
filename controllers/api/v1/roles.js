@@ -18,7 +18,7 @@ exports.requestSkills = async (req, res) => {
   const result = await Role.aggregate()
     .match({ title: title })
     .unwind('required skills')
-    .sort({ 'required skills.timestamp': -1 });
+    .sort({ 'required skills.dateDefined': -1 });
 
   res.send(result[0]);
 };
