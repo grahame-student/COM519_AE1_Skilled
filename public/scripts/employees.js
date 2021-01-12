@@ -113,6 +113,30 @@ async function saveEmployee () {
 /* eslint-disable no-unused-vars */
 async function addEmployee () {
   /* eslint-enable no-unused-vars */
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = '/api/v1/employee';
+  /* eslint-enable no-undef */
+
+  try {
+    console.log('creating new employee');
+    const newEmployee = await fetch(apiUrl, {
+      method: 'POST'
+    }).then((res) => {
+      return res.json();
+    });
+
+    console.log(newEmployee);
+    await getEmployeeList();
+
+    const employeeSelector = document.getElementById('employee-selector');
+    employeeSelector.selectedIndex = [...employeeSelector.options].findIndex(option => option.value === newEmployee.email);
+    await getEmployeeDetails();
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
+  }
 }
 
 // deleteEmployee is used from a client side webpage
