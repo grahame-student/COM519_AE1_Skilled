@@ -55,8 +55,9 @@ exports.delete = async (req, res, next) => {
 };
 
 exports.update = async (req, res, next) => {
+  const escapeRegExp = require('lodash.escaperegexp');
   const group = req.params.group;
-  const skill = req.params.skill;
+  const skill = escapeRegExp(req.params.skill);
   const newSkill = req.body.skill;
   console.log('Updating skill in skill group');
   console.log('Group:                  ', group);
