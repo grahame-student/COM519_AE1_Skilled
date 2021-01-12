@@ -45,7 +45,8 @@ exports.delete = async (req, res, next) => {
 };
 
 exports.add = async (req, res, next) => {
-  const field = req.body.group;
+  const sanitise = require('mongo-sanitize');
+  const field = sanitise(req.body.group);
   console.log('Adding skill group');
   console.log('Group:                  ', field);
 
@@ -60,8 +61,9 @@ exports.add = async (req, res, next) => {
 };
 
 exports.update = async (req, res, next) => {
+  const sanitise = require('mongo-sanitize');
   const oldGroup = req.params.group;
-  const newGroup = req.body.group;
+  const newGroup = sanitise(req.body.group);
   console.log('Changing skill group');
   console.log('From:                   ', oldGroup);
   console.log('To  :                   ', newGroup);

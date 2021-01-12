@@ -36,8 +36,9 @@ exports.delete = async (req, res, next) => {
 };
 
 exports.update = async (req, res, next) => {
+  const sanitise = require('mongo-sanitize');
   const oldRole = req.params.title;
-  const newRole = req.body.title;
+  const newRole = sanitise(req.body.title);
   console.log('Updating job role group');
   console.log('From:                   ', oldRole);
   console.log('To:                     ', newRole);
