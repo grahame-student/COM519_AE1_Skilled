@@ -47,6 +47,11 @@ const detailsList = (details) => {
 async function onLoad () {
   /* eslint-enable no-unused-vars */
   await getEmployeeList();
+  const sel = document.getElementById('employee-selector');
+  if (sel != null && sel.length > 0) {
+    sel.selectedIndex = 0;
+  }
+  await getEmployeeDetails();
 }
 
 // getRoleList is used from a client side webpage
