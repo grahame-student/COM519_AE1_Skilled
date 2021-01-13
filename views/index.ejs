@@ -37,19 +37,21 @@
                                 <input type="email" class="form-control" name="user-email" placeholder="Email"
                                        required>
                             </div>
-                            <div class="input-group mb-1 overflow-auto">
-                                <div class="input-group-prepend w-25">
-                                    <span class="input-group-text w-100">Password</span>
+                            <div class="form-group">
+                                <div class="input-group mb-1 overflow-auto">
+                                    <div class="input-group-prepend w-25">
+                                        <span class="input-group-text w-100">Password</span>
+                                    </div>
+                                    <input type="password" class="form-control" name="user-password" placeholder="Password"
+                                           min="8" required>
                                 </div>
-                                <input type="text" class="form-control" name="user-password" placeholder="Password"
-                                       required>
                             </div>
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group py-3 mr-2 mt-auto" role="group">
                                     <button class="btn btn-primary" type="button" onclick="signIn()">Sign In</button>
                                 </div>
                                 <div class="btn-group py-3 mr-2 mt-auto" role="group">
-                                    <button class="btn btn-primary" type="button" onclick="signUp()">Register</button>
+                                    <button class="btn btn-primary" type="submit" formaction="join">Register</button>
                                 </div>
                             </div>
                         </form>

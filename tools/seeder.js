@@ -11,29 +11,19 @@ const { MONGODB_URI } = process.env;
 const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
 
 async function main () {
-  try {
-    await client.connect();
-    const db = client.db();
-    await db.dropDatabase();
+  await client.connect();
+  const db = client.db();
+  await db.dropDatabase();
 
-    /**
-     * Import the JSON data into the database
-     */
-    const data = await fs.readFile(path.join(__dirname, 'skills.json'), 'utf8');
-    const jsonData = await JSON.parse(data);
-    await importTable(db, 'skills', jsonData);
-    await importTable(db, 'roles', jsonData);
-    await importTable(db, 'employees', jsonData);
-
-    console.info(
-      'Initialised skills database with sample data'
-    );
-
-    process.exit();
-  } catch (error) {
-    console.error('error:', error);
-    process.exit();
-  }
+  /**
+   * Import the JSON data into the database
+   */
+  const data = await fs.readFile(path.join(__dirname, 'skills.json'), 'utf8');
+  const jsonData = await JSON.parse(data);
+  await importTable(db, 'skills', jsonData);
+  await importTable(db, 'roles', jsonData);
+  await importTable(db, 'employees', jsonData);
+  await importTable(db, 'users', jsonData);
 }
 
 async function importTable (db, table, data) {
@@ -41,5 +31,12 @@ async function importTable (db, table, data) {
   await db.collection(table).insertMany(data[table]);
 }
 
-main().then(() => {
-});
+main()
+  .then(() => {
+    console.log('Initialised skills database with sample data');
+    process.exit();
+  })
+  .catch(err => {
+    console.log(err);
+    process.exit();
+  });

@@ -638,5 +638,11 @@
         }
       ]
     }
+  ],
+  "users": [
+    {
+      "email": "joe.appleton@solent.ac.uk",
+      "password": "$2b$10$oo0/iXcUX93xv9bnOVaOTOS5VOyEjIpgdfWWtWfzV4QBrzlm.W5aS"
+    }
   ]
 }

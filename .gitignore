@@ -1,6 +1,7 @@
 .env
 node_modules
 TMP.md
+password.txt
 
 # Enterprise Architect #
 *.ldb

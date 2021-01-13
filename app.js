@@ -11,6 +11,7 @@ const upload = multer();
  * Controllers (route handlers).
  */
 const homeController = require('./controllers/home');
+const userController = require('./controllers/user');
 const skillsController = require('./controllers/skills');
 const rolesController = require('./controllers/roles');
 const employeesController = require('./controllers/employees');
@@ -57,7 +58,7 @@ app.use(expressSession({ secret: SESSION_SECRET, cookie: { expires: new Date(253
  * Configure Routes
  */
 app.get('/', homeController.list);
-
+app.post('/join', userController.join);
 app.get('/edit-skills', skillsController.list);
 app.get('/edit-roles', rolesController.list);
 app.get('/edit-employees', employeesController.list);

@@ -5,8 +5,7 @@ const bcrypt = require('bcrypt');
 const userSchema = new Schema(
   {
     email: { type: String, required: [true, 'email is required'], unique: true },
-    password: { type: String, required: [true, 'password is required'] },
-    saved_tastings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tasting' }]
+    password: { type: String, required: [true, 'password is required'] }
   },
   { timestamps: true }
 );
@@ -20,4 +19,4 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema, 'users');
