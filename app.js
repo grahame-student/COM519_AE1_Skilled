@@ -19,7 +19,7 @@ const assessmentController = require('./controllers/assessments');
 /**
  * API Controllers
  */
-const chartApiController = require('./controllers/api/v1/getChartData');
+const chartApiController = require('./controllers/api/v1/charts');
 const skillGroupApiController = require('./controllers/api/v1/skillGroups');
 const skillApiController = require('./controllers/api/v1/skills');
 const roleApiController = require('./controllers/api/v1/roles');

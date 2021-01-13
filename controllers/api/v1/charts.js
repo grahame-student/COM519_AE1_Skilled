@@ -3,7 +3,7 @@ const smoothing = require('svg-radar-chart/smoothing');
 
 const chartSvg = (chart) => {
   return `
-<svg id="skills-chart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg id="skills-chart" class="img-fluid" xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 120 120">
     <style>
         .axis {
             stroke: #555;
@@ -66,7 +66,7 @@ exports.chart = async (req, res) => {
         .catch(handleErrors);
 
       const groups = await getChartGroups(assessment);
-      const data = await getChartData(assessment);
+      const data = await charts(assessment);
       const chart = await getSvgChart(groups, data);
       res.json(chart);
     } else {
@@ -170,7 +170,7 @@ async function getChartGroups (assessment) {
   return groups;
 }
 
-async function getChartData (assessment) {
+async function charts (assessment) {
   const data = [];
   data.push({ class: 'required' });
   data.push({ class: 'actual' });

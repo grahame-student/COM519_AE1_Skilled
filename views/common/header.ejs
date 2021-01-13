@@ -1,17 +1,31 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="/"> Employee Skill Assessment </a>
-        <div class="navbar">
-            <div class="navbar-nav">
-                <a class="nav-link active" href="/">
-                    Home <span class="sr-only">(current)</span>
-                </a>
-                <a class="nav-link" href="/edit-skills">View Skill Groups</a>
-                <a class="nav-link" href="/edit-roles">View Job Roles</a>
-                <a class="nav-link" href="/edit-employees">View Employees</a>
-                <a class="nav-link" href="#">Assess Employee</a>
-                <a class="nav-link" href="/view-assessments">View Assessments</a>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/"> Employee Skill Assessment</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit-skills">Edit Skill Groups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit-roles">Edit Job Roles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit-employees">Edit Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Create Assessment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view-assessments">View Assessment</a>
+                </li>
+            </ul>
+            <span id="active-user" class="navbar-text"></span>
         </div>
     </nav>
 </header>
