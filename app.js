@@ -70,7 +70,7 @@ app.get('/logout', userController.logout);
 app.get('/edit-skills', userController.authMiddleware, skillsController.list);
 app.get('/edit-roles', userController.authMiddleware, rolesController.list);
 app.get('/edit-employees', userController.authMiddleware, employeesController.list);
-app.get('/create-assessment', userController.authMiddleware, assessmentController.create);
+app.get('/create-assessment', assessmentController.create);
 app.get('/view-assessments', assessmentController.view);
 
 /**
@@ -112,6 +112,9 @@ app.get('/api/v1/employee/:email/assessment', employeeApiController.latestAssess
 app.delete('/api/v1/employee/:email', employeeApiController.delete); // remove single employee by email
 app.post('/api/v1/employee', employeeApiController.add); // add a new employee
 app.patch('/api/v1/employee/:email', upload.none(), employeeApiController.update); // save changes to single employee
+
+// assessment API endpoints
+app.patch('/api/v1/assessment/:email', employeeApiController.createAssessment); // save changes to single employee
 
 /**
  * Start listening for incoming traffic

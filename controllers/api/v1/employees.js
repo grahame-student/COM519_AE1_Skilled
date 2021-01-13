@@ -1,3 +1,6 @@
+const opts = require('./apiOptions');
+const fetch = require('node-fetch');
+
 const Employee = require('../../../models/Employee');
 
 exports.list = async (req, res, next) => {
@@ -109,6 +112,75 @@ exports.latestAssessment = async (req, res, next) => {
   }
 };
 
+exports.createAssessment = async (req, res, next) => {
+  const email = req.params.email;
+  const title = req.body.title;
+  console.log('Creating assessment for employee');
+  console.log('Email:                  ', email);
+  console.log('Title:                  ', title);
+
+  // Get the latest role requirements
+  const baseUrl = await opts.apiurl();
+  let roleReqs;
+  await fetch(`${baseUrl}/api/v1/role/${getParam(title)}/skill`)
+    .then(checkStatus)
+    .then(res => res.json())
+    .then(objData => {
+      roleReqs = objData;
+    })
+    .catch(handleErrors);
+
+  const assessment = {
+    'assessment timestamp': Date.now(),
+    role: title,
+    skills: []
+  };
+
+  const skills = roleReqs['required skills'].skills;
+  skills.forEach(skillGroup => {
+    const newGroup = { group: skillGroup.group, skills: [] };
+    skillGroup.skills.forEach(skill => {
+      newGroup.skills.push({
+        skill: skill.skill,
+        'required level': skill.level,
+        'actual level': 0
+      });
+    });
+    assessment.skills.push(newGroup);
+  });
+
+  let requestedEmployee;
+  await Employee.findOne({ email: email })
+    .then(result => {
+      requestedEmployee = result;
+    })
+    .catch(handleErrors);
+
+  requestedEmployee.assessments.push(assessment);
+  await requestedEmployee.save();
+
+  const query = Employee.findOne({ email: email });
+  query.exec(function (err, someValue) {
+    if (err) return next(err);
+    console.log(JSON.stringify(someValue));
+    res.send(someValue);
+  });
+};
+
+async function checkStatus (res) {
+  if (res.ok) {
+    // res.status >= 200 && res.status < 300
+    return res;
+  } else {
+    console.log('Unable to obtain valid result');
+  }
+}
+
 async function handleErrors (error) {
   console.log(error);
+}
+
+function getParam (param) {
+  const esc = encodeURIComponent;
+  return esc(param);
 }

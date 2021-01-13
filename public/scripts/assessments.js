@@ -91,7 +91,7 @@ async function getRoleList () {
   }
 }
 
-// getRoleList is used from a client side webpage
+// getEmployeeList is used from a client side webpage
 /* eslint-disable no-unused-vars */
 async function getEmployeeList () {
   /* eslint-enable no-unused-vars */
@@ -106,6 +106,41 @@ async function getEmployeeList () {
     const employeeHtml = [];
     employeeHtml.push(employeeList(employees));
     employeeDomRef.innerHTML = employeeHtml.join('');
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
+  }
+}
+
+// getRoleList is used from a client side webpage
+/* eslint-disable no-unused-vars */
+async function createAssessment () {
+  /* eslint-enable no-unused-vars */
+  const selectedRole = document.getElementById('role-selector').value;
+  console.log('Job role selected: ', selectedRole);
+  if (selectedRole === null) return;
+
+  const selectedEmployee = document.getElementById('employee-selector').value;
+  console.log('Employee selected: ', selectedEmployee);
+  if (selectedEmployee === null) return;
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/assessment/${getParam(selectedEmployee)}`;
+  /* eslint-enable no-undef */
+  try {
+    const assessment = await fetch(apiUrl, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title: selectedRole })
+    }).then((res) => {
+      return res.json();
+    });
+
+    console.log(assessment);
   } catch (e) {
     console.log(`error using skilled API: ${apiUrl}`);
     console.log(e);
