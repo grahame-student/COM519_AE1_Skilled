@@ -52,9 +52,10 @@ exports.add = async (req, res, next) => {
 };
 
 exports.update = async (req, res, next) => {
+  const sanitise = require('mongo-sanitize');
   const currentEmail = req.params.email;
 
-  const newEmail = req.body['employee-email'];
+  const newEmail = sanitise(req.body['employee-email']);
   const name = req.body['employee-name'];
   const title = req.body['employee-title'];
   console.log('Saving Employee Details');
