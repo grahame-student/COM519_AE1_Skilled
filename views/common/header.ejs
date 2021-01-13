@@ -25,7 +25,14 @@
                     <a class="nav-link" href="/view-assessments">View Assessment</a>
                 </li>
             </ul>
-            <span id="active-user" class="navbar-text"></span>
+            <span id="active-user" class="navbar-text">
+                <!-- FIXME: this doesn't work until the user navigates to a different page -->
+                <% if (user) { %>
+                    <%= user.email %>
+                <% } else { %>
+                    Guest
+                <% } %>
+            </span>
         </div>
     </nav>
 </header>

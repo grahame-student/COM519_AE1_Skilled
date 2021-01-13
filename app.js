@@ -55,21 +55,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSession({ secret: SESSION_SECRET, cookie: { expires: new Date(253402300000000) } }));
 
 /**
+ * Global Route
+ */
+global.user = false;
+app.use('*', userController.session);
+
+/**
  * Configure Routes
  */
 app.get('/', homeController.list);
 app.post('/join', userController.join);
-app.get('/edit-skills', skillsController.list);
-app.get('/edit-roles', rolesController.list);
-app.get('/edit-employees', employeesController.list);
+app.post('/signin', userController.signin);
+app.get('/logout', userController.logout);
+app.get('/edit-skills', userController.authMiddleware, skillsController.list);
+app.get('/edit-roles', userController.authMiddleware, rolesController.list);
+app.get('/edit-employees', userController.authMiddleware, employeesController.list);
 app.get('/view-assessments', assessmentController.view);
-
-// TODO: Not yet implemented
-app.get('/logout', async (req, res) => {
-  req.session.destroy();
-  global.user = false;
-  res.redirect('/');
-});
 
 /**
  * Configure v1 API Routes
