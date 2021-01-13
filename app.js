@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const multer = require('multer');
+const csrf = require('csurf');
 const upload = multer();
 
 /**
@@ -51,7 +52,7 @@ mongoose.connection.on('error', (err) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(csrf({ cookie: true }));
 app.use(expressSession({ secret: SESSION_SECRET, cookie: { expires: new Date(253402300000000) } }));
 
 /**
