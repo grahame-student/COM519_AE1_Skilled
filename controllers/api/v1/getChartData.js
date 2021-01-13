@@ -25,7 +25,6 @@ const chartSvg = (chart) => {
         }
         .shape.required:hover {
             fill: #008800;
-            text-rendering: text;
         }
         .shape.actual {
             fill: #880088;
@@ -37,6 +36,54 @@ const chartSvg = (chart) => {
 };
 
 exports.chart = async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    const fetch = require('node-fetch');
+    const baseUrl = await opts.apiurl();
+
+    let apiUrl = `${baseUrl}/api/v1/employee/${getParam(email)}`;
+    console.log(`Getting employee using endpoint: ${apiUrl}`);
+    let employee;
+    await fetch(apiUrl)
+      .then(checkStatus)
+      .then(res => res.json())
+      .then(objData => {
+        employee = objData;
+      })
+      .catch(handleErrors);
+
+    if (employee.assessments.length > 0) {
+      apiUrl = `${baseUrl}/api/v1/employee/${getParam(email)}/assessment`;
+      console.log(`Getting latest employee assessment using endpoint: ${apiUrl}`);
+      let assessment;
+      await fetch(apiUrl)
+        .then(checkStatus)
+        .then(res => res.json())
+        .then(objData => {
+          assessment = objData;
+        })
+        .catch(handleErrors);
+
+      const groups = await getChartGroups(assessment);
+      const data = await getChartData(assessment);
+      const chart = await getSvgChart(groups, data);
+      res.json(chart);
+    } else {
+      console.log('Employee has no assessments');
+      res.status(404).send({
+        message: 'could not get chart'
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(404).send({
+      message: 'could not get chart'
+    });
+  }
+};
+
+exports.dummyChart = async (req, res) => {
   try {
     const fetch = require('node-fetch');
     const baseUrl = await opts.apiurl();
@@ -60,7 +107,8 @@ exports.chart = async (req, res) => {
       })
       .catch(handleErrors);
 
-    res.json(await getSvgChart(groups, data));
+    const chart = await getSvgChart(groups, data);
+    res.json(chart);
   } catch (error) {
     console.log(error);
     res.status(404).send({
@@ -69,7 +117,7 @@ exports.chart = async (req, res) => {
   }
 };
 
-exports.groups = async (req, res) => {
+exports.dummyGroups = async (req, res) => {
   try {
     const Result = await getGroups();
     res.json(Result);
@@ -81,7 +129,7 @@ exports.groups = async (req, res) => {
   }
 };
 
-exports.data = async (req, res) => {
+exports.dummyData = async (req, res) => {
   try {
     const Result = await getData();
     res.json(Result);
@@ -110,6 +158,29 @@ async function getData () {
     { class: 'required', skillGroup1: 2 / 4, skillGroup2: 2 / 4, skillGroup3: 2 / 4 },
     { class: 'actual', skillGroup1: 2.9 / 4, skillGroup2: 0.6 / 4, skillGroup3: 3 / 4 }
   ];
+}
+
+async function getChartGroups (assessment) {
+  const groups = {};
+  assessment.assessments.skills.forEach(group => {
+    group.skills.forEach(skill => {
+      groups[skill.skill] = skill.skill;
+    });
+  });
+  return groups;
+}
+
+async function getChartData (assessment) {
+  const data = [];
+  data.push({ class: 'required' });
+  data.push({ class: 'actual' });
+  assessment.assessments.skills.forEach(group => {
+    group.skills.forEach(skill => {
+      data[0][skill.skill] = skill['required level'] / 4;
+      data[1][skill.skill] = skill['actual level'] / 4;
+    });
+  });
+  return data;
 }
 
 async function checkStatus (res) {
@@ -142,4 +213,11 @@ async function getSvgChart (groups, data) {
   // Convert the chart to an SVG representation
   const stringify = require('virtual-dom-stringify');
   return chartSvg(stringify(chart));
+}
+
+/* eslint-disable no-unused-vars */
+function getParam (param) {
+  /* eslint-enable no-unused-vars */
+  const esc = encodeURIComponent;
+  return esc(param);
 }

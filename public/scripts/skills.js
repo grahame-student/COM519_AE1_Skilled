@@ -1,7 +1,7 @@
 const groupList = (groups) => {
   const length = Math.min(10, groups.length);
 
-  const listStart = `<select id="group-selector" size="${length}" onchange="getSkillList()">`;
+  const listStart = `<select id="group-selector" class="form-control" size="${length}" onchange="getSkillList()">`;
 
   let listBody = '';
   groups.forEach(element => {
@@ -16,7 +16,7 @@ const groupList = (groups) => {
 const skillList = (skills) => {
   const length = Math.min(10, skills.length);
 
-  const listStart = `<select id="skill-selector" size="${length}">`;
+  const listStart = `<select id="skill-selector" class="form-control" size="${length}">`;
 
   let listBody = '';
   skills.forEach(element => {

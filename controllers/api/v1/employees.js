@@ -78,8 +78,34 @@ exports.update = async (req, res, next) => {
   const query = Employee.findOne({ email: newEmail });
   query.exec(function (err, someValue) {
     if (err) return next(err);
-    res.status(201).json(someValue);
+    res.send(someValue);
   });
+};
+
+exports.latestAssessment = async (req, res, next) => {
+  const email = req.params.email;
+  console.log('Getting latest assessment for employee');
+  console.log('Email:                  ', email);
+
+  let requestedEmployee;
+  await Employee.findOne({ email: email })
+    .then(result => {
+      requestedEmployee = result;
+    })
+    .catch(handleErrors);
+
+  if (requestedEmployee.assessments.length > 0) {
+    console.log('Employee has been assessed, getting latest results');
+    const result = await Employee.aggregate()
+      .match({ email: email })
+      .unwind('assessments')
+      .sort({ 'assessments.assessment timestamp': -1 });
+    res.send(result[0]);
+  } else {
+    res.status(404).send({
+      message: 'employee has not been assessed'
+    });
+  }
 };
 
 async function handleErrors (error) {

@@ -14,6 +14,7 @@ const homeController = require('./controllers/home');
 const skillsController = require('./controllers/skills');
 const rolesController = require('./controllers/roles');
 const employeesController = require('./controllers/employees');
+const assessmentController = require('./controllers/assessments');
 
 /**
  * API Controllers
@@ -60,6 +61,7 @@ app.get('/', homeController.list);
 app.get('/edit-skills', skillsController.list);
 app.get('/edit-roles', rolesController.list);
 app.get('/edit-employees', employeesController.list);
+app.get('/view-assessments', assessmentController.view);
 
 // TODO: Not yet implemented
 app.get('/logout', async (req, res) => {
@@ -72,9 +74,10 @@ app.get('/logout', async (req, res) => {
  * Configure v1 API Routes
  */
 // charting API endpoints
-app.get('/api/v1/chart', chartApiController.chart);
-app.get('/api/v1/chartGroup', chartApiController.groups);
-app.get('/api/v1/chartData', chartApiController.data);
+app.get('/api/v1/chart', chartApiController.dummyChart); // Request a dummy chart
+app.get('/api/v1/chartGroup', chartApiController.dummyGroups); // Request dummy chart groups
+app.get('/api/v1/chartData', chartApiController.dummyData); // Request dummy chart data
+app.get('/api/v1/chart/:email', chartApiController.chart); // Request a chart for the employee with specified email
 
 // skill groups API endpoints
 app.get('/api/v1/groups', skillGroupApiController.getAll); // Get all skill groups
@@ -102,6 +105,7 @@ app.patch('/api/v1/requiredSkills/:title', upload.none(), requiredSkillsApiContr
 // employee API endpoints
 app.get('/api/v1/employees', employeeApiController.list); // get a list of all employee names
 app.get('/api/v1/employee/:email', employeeApiController.request); // get single employee by email
+app.get('/api/v1/employee/:email/assessment', employeeApiController.latestAssessment); // get the last assessment made for single employee
 app.delete('/api/v1/employee/:email', employeeApiController.delete); // remove single employee by email
 app.post('/api/v1/employee', employeeApiController.add); // add a new employee
 app.patch('/api/v1/employee/:email', upload.none(), employeeApiController.update); // save changes to single employee

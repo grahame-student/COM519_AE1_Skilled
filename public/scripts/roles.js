@@ -1,7 +1,7 @@
 const roleList = (roles) => {
   const length = Math.min(10, roles.length);
 
-  const listStart = `<select id="role-selector" size="${length}" onchange="getSkillList()">`;
+  const listStart = `<select id="role-selector" class="form-control" size="${length}" onchange="getSkillList()">`;
 
   let listBody = '';
   roles.forEach(element => {

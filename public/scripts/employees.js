@@ -1,6 +1,6 @@
 const employeeList = (employees) => {
   const length = Math.min(10, employees.length);
-  const listStart = `<select id="employee-selector" size="${length}" onchange="getEmployeeDetails()">`;
+  const listStart = `<select id="employee-selector" class="form-control" size="${length}" onchange="getEmployeeDetails()">`;
 
   let listBody = '';
   employees.forEach(element => {
