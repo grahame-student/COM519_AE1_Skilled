@@ -70,7 +70,7 @@ app.get('/logout', userController.logout);
 app.get('/edit-skills', userController.authMiddleware, skillsController.list);
 app.get('/edit-roles', userController.authMiddleware, rolesController.list);
 app.get('/edit-employees', userController.authMiddleware, employeesController.list);
-app.get('/create-assessment', assessmentController.create);
+app.get('/create-assessment', userController.authMiddleware, assessmentController.create);
 app.get('/view-assessments', assessmentController.view);
 
 /**

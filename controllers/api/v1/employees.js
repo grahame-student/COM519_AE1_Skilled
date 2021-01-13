@@ -159,12 +159,7 @@ exports.createAssessment = async (req, res, next) => {
   requestedEmployee.assessments.push(assessment);
   await requestedEmployee.save();
 
-  const query = Employee.findOne({ email: email });
-  query.exec(function (err, someValue) {
-    if (err) return next(err);
-    console.log(JSON.stringify(someValue));
-    res.send(someValue);
-  });
+  res.send(assessment);
 };
 
 async function checkStatus (res) {
