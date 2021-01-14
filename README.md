@@ -10,9 +10,10 @@ The software allows registered users to
 * create / view assessments of team members against the defined roles
 
 ## Software Dependencies
-The following must be installed or accessable:
-* `node js` () TODO: add url
-* `mongodb` if not installed locally must be accessable as a network / hosted resource
+The following must be installed or accessible:
+* `node js` [Node JS website](https://nodejs.org/en/)
+* `mongodb` [MongodDB website](https://www.mongodb.com/)
+  if not installed locally must be accessible as a network / hosted resource
 
 ## Installation
 Checkout the code from github using: `git clone https://github.com/Grahame-student/COM519_AE1_Skilled.git`
@@ -31,6 +32,13 @@ Create a `.env` file using the provided `.env.template` file
 
 **The .env file should not be checked into a version control system as some of these values could be used to compromise the security of the webapp**
 
+When deploying to a hosted service ensure that the .env file is either uploaded to the hosted service or appropriate environment variables are set.
+Additionally, you will need to set the following values:
+* Set `API_BASE` to the URI of your hosted webapp
+* Set `NODE_ENV` to `production`
+
+These values ensure that the real URIs are used and not any defined for local development / debugging activities.
+
 ## Usage
 To start the `Skilled` application navigate to the directory that the code was checked out into and use:
 
@@ -40,7 +48,7 @@ The following output should be seen on the command prompt
 
 `Skilled app listening at http://localhost:2020`
 
-Navigate to the URL shown and the application's main page should be displayed
+Navigate to the URL shown, and the application's main page should be displayed.
 
-**TODO: Insert screenshot of web app front page**
+![Screenshot of Skilled's main page](docs/images/skilled_front_page.png)
 
