@@ -179,16 +179,7 @@ exports.saveAssessment = async (req, res, next) => {
       groups[skill.group] = {};
     }
     groups[skill.group][skill.skill] = skill.actual;
-
-    // groups.push([skill.group, skill.skill][skill.actual]);
-    // const inGroups = groups[skill.group] != null;
-    // if (!inGroups) {
-    //   groups[skill.group] = [{ skill: skill.skill, level: skill.actual }];
-    // } else {
-    //   groups[skill.group].push({ skill: skill.skill, level: skill.actual });
-    // }
   });
-  console.log(groups);
 
   let requestedEmployee;
   await Employee.findOne({ email: email })
@@ -204,12 +195,12 @@ exports.saveAssessment = async (req, res, next) => {
     return 0; // dates are equal if we get here
   });
 
-  requestedEmployee.assessments[0].skills.forEach(group => {
+  await requestedEmployee.assessments[0].skills.forEach(group => {
     group.skills.forEach(skill => {
       skill['actual level'] = groups[group.group][skill.skill];
     });
   });
-  requestedEmployee.save();
+  await requestedEmployee.save();
 
   const query = Employee.findOne({ email: email });
   query.exec(function (err, someValue) {

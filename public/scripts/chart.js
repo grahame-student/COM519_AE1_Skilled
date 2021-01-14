@@ -84,6 +84,9 @@ async function loadChart () {
       chart = getNoAssessments();
     }
     const chartHtml = [];
+    // TODO: Add a legend for the radar chart
+    //       purple = actual level of skills
+    //       green  = required level of skills
     chartHtml.push(chart);
     chartDomRef.innerHTML = chartHtml.join('');
   } catch (e) {
