@@ -162,6 +162,62 @@ exports.createAssessment = async (req, res, next) => {
   res.send(assessment);
 };
 
+exports.saveAssessment = async (req, res, next) => {
+  const email = req.params.email;
+  // HACK: I think I'm doing something wrong somewhere as req.body logs as a null prototype object
+  //       round-tripping using JSON causes the logging to appear as expected
+  const skills = JSON.parse(JSON.stringify(req.body));
+  console.log('Creating assessment for employee');
+  console.log('Email:                  ', email);
+  console.log('Skills:                 ', skills);
+
+  // Prepare skills
+  // { group: '', skill: '', level: 0 }
+  const groups = {};
+  skills.skill.forEach(skill => {
+    if (!([skill.group] in groups)) {
+      groups[skill.group] = {};
+    }
+    groups[skill.group][skill.skill] = skill.actual;
+
+    // groups.push([skill.group, skill.skill][skill.actual]);
+    // const inGroups = groups[skill.group] != null;
+    // if (!inGroups) {
+    //   groups[skill.group] = [{ skill: skill.skill, level: skill.actual }];
+    // } else {
+    //   groups[skill.group].push({ skill: skill.skill, level: skill.actual });
+    // }
+  });
+  console.log(groups);
+
+  let requestedEmployee;
+  await Employee.findOne({ email: email })
+    .then(result => {
+      requestedEmployee = result;
+    })
+    .catch(handleErrors);
+
+  // Sort so newest assessment is first
+  await requestedEmployee.assessments.sort((a, b) => {
+    if (new Date(a['assessment timestamp']) > new Date(b['assessment timestamp'])) return -1;
+    if (new Date(a['assessment timestamp']) < new Date(b['assessment timestamp'])) return 1;
+    return 0; // dates are equal if we get here
+  });
+
+  requestedEmployee.assessments[0].skills.forEach(group => {
+    group.skills.forEach(skill => {
+      skill['actual level'] = groups[group.group][skill.skill];
+    });
+  });
+  requestedEmployee.save();
+
+  const query = Employee.findOne({ email: email });
+  query.exec(function (err, someValue) {
+    if (err) return next(err);
+    res.send(someValue);
+  });
+};
+
 async function checkStatus (res) {
   if (res.ok) {
     // res.status >= 200 && res.status < 300

@@ -58,7 +58,7 @@ const skillControls = (group, skill, skillNo) => {
             </div>
             <input type="number" name="skill[${skillNo}][actual]" class="form-control" value="${skill['actual level']}" min="0" max="4">
             <input type="hidden" name="skill[${skillNo}][group]" value="${group}">
-            <input type="hidden" name="skill[${skillNo}][skill]" value="${skill}">
+            <input type="hidden" name="skill[${skillNo}][skill]" value="${skill.skill}">
           </div>`;
 };
 
@@ -112,7 +112,7 @@ async function getEmployeeList () {
   }
 }
 
-// getRoleList is used from a client side webpage
+// createAssessment is used from a client side webpage
 /* eslint-disable no-unused-vars */
 async function createAssessment () {
   /* eslint-enable no-unused-vars */
@@ -130,7 +130,7 @@ async function createAssessment () {
   /* eslint-enable no-undef */
   try {
     const assessment = await fetch(apiUrl, {
-      method: 'PATCH',
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -144,6 +144,32 @@ async function createAssessment () {
     const skillsHtml = [];
     skillsHtml.push(skillList(assessment));
     skillsDomRef.innerHTML = skillsHtml.join('');
+  } catch (e) {
+    console.log(`error using skilled API: ${apiUrl}`);
+    console.log(e);
+  }
+}
+
+// createAssessment is used from a client side webpage
+/* eslint-disable no-unused-vars */
+async function saveAssessment () {
+  /* eslint-enable no-unused-vars */
+  const selectedEmployee = document.getElementById('employee-selector').value;
+  console.log('Employee selected: ', selectedEmployee);
+  if (selectedEmployee === null) return;
+
+  const formElement = document.getElementById('skills-form');
+  const formData = new FormData(formElement);
+
+  /* eslint-disable no-undef */
+  // getParam becomes visible once deployed on the server
+  const apiUrl = `/api/v1/assessment/${getParam(selectedEmployee)}`;
+  /* eslint-enable no-undef */
+  try {
+    await fetch(apiUrl, {
+      method: 'PATCH',
+      body: formData
+    });
   } catch (e) {
     console.log(`error using skilled API: ${apiUrl}`);
     console.log(e);

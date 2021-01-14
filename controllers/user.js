@@ -38,6 +38,9 @@ exports.signin = async (req, res) => {
 
       if (match) {
         req.session.userID = user._id;
+        global.user = user;
+        res.render('index', { message: `User ${user.email} logged in` });
+        return;
       }
     }
     res.render('index', { message: null });

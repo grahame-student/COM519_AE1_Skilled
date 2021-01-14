@@ -114,7 +114,8 @@ app.post('/api/v1/employee', employeeApiController.add); // add a new employee
 app.patch('/api/v1/employee/:email', upload.none(), employeeApiController.update); // save changes to single employee
 
 // assessment API endpoints
-app.patch('/api/v1/assessment/:email', employeeApiController.createAssessment); // save changes to single employee
+app.post('/api/v1/assessment/:email', employeeApiController.createAssessment); // create a new assessment for an employee
+app.patch('/api/v1/assessment/:email', upload.none(), employeeApiController.saveAssessment); // create a new assessment for an employee
 
 /**
  * Start listening for incoming traffic
