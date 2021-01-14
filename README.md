@@ -20,6 +20,7 @@ Checkout the code from github using: `git clone https://github.com/Grahame-stude
 _The location the code is checked out into should not have an spaces in its path, some npm packages have problems installing to them._
 
 Install the required node packages using:
+
 `npm install`
 
 Create a `.env` file using the provided `.env.template` file
@@ -32,11 +33,14 @@ Create a `.env` file using the provided `.env.template` file
 
 ## Usage
 To start the `Skilled` application navigate to the directory that the code was checked out into and use:
+
 `node app.js`
 
 The following output should be seen on the command prompt
+
 `Skilled app listening at http://localhost:2020`
 
 Navigate to the URL shown and the application's main page should be displayed
-** TODO: Insert screenshot of web app front page **
+
+**TODO: Insert screenshot of web app front page**
 
