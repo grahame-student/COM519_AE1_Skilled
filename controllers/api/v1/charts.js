@@ -23,9 +23,6 @@ const chartSvg = (chart) => {
         .shape.required {
             fill: #008800;
         }
-        .shape.required:hover {
-            fill: #008800;
-        }
         .shape.actual {
             fill: #880088;
         }

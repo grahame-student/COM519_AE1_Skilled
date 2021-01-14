@@ -120,7 +120,7 @@ functionality of the `Skilled` application.
 The skill groups and individual skills within them can be configured by
 following the `Edit Skill Groups` link.
 
-![Screenshot of Skilled's main page](docs/images/skilled_manage_skills.png)
+![Screenshot of Skilled's manage skills page](docs/images/skilled_manage_skills.png)
 
 * On the left, the available skill groups can be added to, renamed and deleted.
 * On the right, the skills within the currently selected group can be added,
@@ -139,7 +139,7 @@ structured to make this relatively simple to add.**
 The job roles and skill requirements for each role can be configured by
 following the `Edit Job Roles` link.
 
-![Screenshot of Skilled's main page](docs/images/skilled_manage_roles.png)
+![Screenshot of Skilled's manage roles page](docs/images/skilled_manage_roles.png)
 
 * On the left, the available job roles can be added to, renamed and deleted.
 * On the right, the level of skill required by the selected job role can be set
@@ -160,7 +160,7 @@ feature update,
 Employees and their details can be configured by following the `Edit Employees`
 link.
 
-![Screenshot of Skilled's main page](docs/images/skilled_manage_employees.png)
+![Screenshot of Skilled's manage employees page](docs/images/skilled_manage_employees.png)
 
 * On the left, employees can be added and deleted.
 * On the right, employee details can be modified and saved.
@@ -174,9 +174,38 @@ Names may be the same within a business but email addresses are unique and are
 therefore used as the primary method of referencing a specific employee.
 
 ### Creating Employee Assessments
+Employees assessments can be created by following the `Create Assessment` link.
 
+![Screenshot of Skilled's create assessment page](docs/images/skilled_create_assessment.png)
 
+* On the left, an assessment can be created.
+* On the right, the achieved skill levels can be populated.
 
+An employee can be assessed against any of the available roles making it simple
+to monitor an employee's capabilities even if they are promoted or change
+specialisation. A new assessment will use the most upto date set of required
+skills associated with the selected role. New assessments will have a value of
+0 for all achieved skill levels by default.
 
+After all the skills have been assigned the required level, the save button
+can be used store the values in the database.
 
+### View Employee Assessments
+Completed employees assessments can be viewed by following the `View
+Assessment` link.
 
+![Screenshot of Skilled's view assessment page](docs/images/skilled_view_assessment.png)
+
+* On the left, a list of employees to review the assessments of.
+* On the right, a radar chart of all the skills from the employee's latest 
+  assessment.
+
+The generated radar chart highlights the area representing the required skills
+in green and the area representing the achieved skills in purple. Both areas
+have an alpha channel applied so that when one area overlays the other both are
+still visible.
+
+**Currently only the latest employee assessment is displayed, however the
+database is structured so that previous assessments are also saved, along will
+all data needed to generate a visualisation of the assessment, even if roles
+and skills have changed since the assessment was recorded**
