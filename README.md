@@ -76,13 +76,12 @@ into and use:
 `node seeder.js`
 
 The following output should be seen on the command prompt
-```
-Importing table: skills
-Importing table: roles
-Importing table: employees
-Importing table: users
-Initialised skills database with sample data
-```
+
+* `Importing table: skills`
+* `Importing table: roles`
+* `Importing table: employees`
+* `Importing table: users`
+* `Initialised skills database with sample data`
 
 ## Usage
 To start the `Skilled` application navigate to the directory that the code was
@@ -123,8 +122,8 @@ following the `Edit Skill Groups` link.
 
 ![Screenshot of Skilled's main page](docs/images/skilled_manage_skills.png)
 
-On the left, the available skill groups can be added to, renamed and deleted.
-On the right, the skills within the currently selected group can be added,
+* On the left, the available skill groups can be added to, renamed and deleted.
+* On the right, the skills within the currently selected group can be added,
 renamed and deleted.
 
 If a skill was previously used in a role definition or in an employee
@@ -142,6 +141,42 @@ following the `Edit Job Roles` link.
 
 ![Screenshot of Skilled's main page](docs/images/skilled_manage_roles.png)
 
-On the left, the available job roles can be added to, renamed and deleted.
-On the right, the level of skill required by the selected job role can be set
+* On the left, the available job roles can be added to, renamed and deleted.
+* On the right, the level of skill required by the selected job role can be set
 to a value between 0 (not required) to 4 (expert).
+
+Adding a new job role will create an entry in the `roles` collection containing
+all the groups and skills currently defined in the `skills` collection. By
+default, the required level for all skills will be 0. Once the levels have been
+set and reviewed click save to store them in the database. To revise the skill
+requirements of an existing role, select it, set the levels as necessary and
+then click save.
+
+Saving a role will add a new timestamped entry to the role's required skills
+field, making to possible to review changes to a role over time in a future
+feature update, 
+
+### Configuring Employees
+Employees and their details can be configured by following the `Edit Employees`
+link.
+
+![Screenshot of Skilled's main page](docs/images/skilled_manage_employees.png)
+
+* On the left, employees can be added and deleted.
+* On the right, employee details can be modified and saved.
+
+Adding a new employee will create an employee placeholder, which will be
+visible in the employee list and employee details. Once selected the employee's
+details can be configured and saved to the database. As employees from
+different locations around the globe may have different titles for the same
+role the decision was made not to use the role to populate the title field.
+Names may be the same within a business but email addresses are unique and are
+therefore used as the primary method of referencing a specific employee.
+
+### Creating Employee Assessments
+
+
+
+
+
+
