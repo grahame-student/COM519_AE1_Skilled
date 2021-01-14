@@ -154,7 +154,7 @@ then click save.
 
 Saving a role will add a new timestamped entry to the role's required skills
 field, making to possible to review changes to a role over time in a future
-feature update, 
+feature update.
 
 ### Configuring Employees
 Employees and their details can be configured by following the `Edit Employees`
