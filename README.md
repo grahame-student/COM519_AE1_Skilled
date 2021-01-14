@@ -96,16 +96,16 @@ The following output should be seen on the command prompt
 Navigate to the URL shown, using your web browser, and the application's main
 page should be displayed.
 
-**The web app uses some features of HTML 5 , CSS 3 and JS the Internet Explorer
+**The web app uses some features of HTML 5, CSS 3 and JS that Internet Explorer
 is known to not support**
 
 ![Screenshot of Skilled's main page](docs/images/skilled_front_page.png)
 
 ### Registering
-In order to use many of the features offered by `Skilled` a user account first
-needs to be created. Currently, this is a self registration process with no
-backend verification of who has registered. Users that have self registered
-are stored in the `users` collection of the backend database. No personal
+In order to use many of the features offered by `Skilled` a user account must
+first be created. Currently, this is a self registration process with no
+backend verification of who has registered. Users that have self registered are
+stored in the `users` collection of the backend database. No personal
 information is stored beyond an email address and password details (in the form
 of a salted hash). Where no verification process has been implemented, emails
 only need to be unique, and pass the standard email format validation checks
