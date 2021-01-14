@@ -197,7 +197,7 @@ Assessment` link.
 ![Screenshot of Skilled's view assessment page](docs/images/skilled_view_assessment.png)
 
 * On the left, a list of employees to review the assessments of.
-* On the right, a radar chart of all the skills from the employee's latest 
+* On the right, a radar chart of all the skills from the employee's latest
   assessment.
 
 The generated radar chart highlights the area representing the required skills
