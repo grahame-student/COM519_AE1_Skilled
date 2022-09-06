@@ -1,6 +1,8 @@
 # Skilled - Assessment 1 of COM519 - Advanced Database Systems
 ![Lint Project](https://github.com/Grahame-student/COM519_AE1_Skilled/workflows/Lint%20Project/badge.svg)
 
+## NOTE: Heroku's free hosting service is being shutdown
+
 Skilled is a simple webapp designed as a tool to track the level of expertise
 team members have against a set of role requirements. The goal is to create a
 visualisation of where team members are that can be used to justify where effort
